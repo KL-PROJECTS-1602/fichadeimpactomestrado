@@ -1,0 +1,979 @@
+<title>Ficha de Impacto Real PPGATS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Public+Sans:wght@400;500;600;700&display=swap">
+
+<style>
+:root{
+  --ink:#1B1A2E; --ink-2:#4A4763; --ink-3:#6F6B88;
+  --paper:#FBFAFC; --surface:#FFFFFF; --surface-2:#F5F3FA;
+  --rule:#DDD8E8; --rule-strong:#C3BCD9;
+  --violet:#4C3A8C; --violet-2:#6A57B0; --violet-wash:#EDE9F7;
+  --moss:#2F6B4F; --moss-wash:#E6F1EA;
+  --amber:#8A5A0B; --amber-wash:#FBF0DC;
+  --shadow:0 1px 2px rgba(27,26,46,.06), 0 8px 24px -16px rgba(27,26,46,.28);
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --sans:"Public Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ink:#EDEAF5; --ink-2:#B7B1CC; --ink-3:#8B85A3;
+    --paper:#141320; --surface:#1D1B2B; --surface-2:#232134;
+    --rule:#332F47; --rule-strong:#453F5E;
+    --violet:#A899E8; --violet-2:#BCB0F0; --violet-wash:#2A2542;
+    --moss:#79C39C; --moss-wash:#1D3329;
+    --amber:#D9A441; --amber-wash:#382C13;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#EDEAF5; --ink-2:#B7B1CC; --ink-3:#8B85A3;
+  --paper:#141320; --surface:#1D1B2B; --surface-2:#232134;
+  --rule:#332F47; --rule-strong:#453F5E;
+  --violet:#A899E8; --violet-2:#BCB0F0; --violet-wash:#2A2542;
+  --moss:#79C39C; --moss-wash:#1D3329;
+  --amber:#D9A441; --amber-wash:#382C13;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--sans); font-size:15px; line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{margin:0; text-wrap:balance}
+p{margin:0}
+a{color:var(--violet)}
+button{font:inherit}
+:focus-visible{outline:2px solid var(--violet); outline-offset:2px; border-radius:3px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
+
+/* masthead */
+.masthead{background:linear-gradient(160deg,#3D2E73 0%,#57429B 55%,#6A57B0 100%); color:#F3F0FB; padding:26px 24px 22px}
+:root[data-theme="dark"] .masthead, :root:not([data-theme="light"]) .masthead{background:linear-gradient(160deg,#2B2350 0%,#3B2F70 55%,#4B3C87 100%)}
+.masthead-in{max-width:1140px; margin:0 auto; display:flex; flex-wrap:wrap; gap:18px; align-items:flex-end; justify-content:space-between}
+.eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#C9BEF0; margin-bottom:8px}
+.masthead h1{font-family:var(--serif); font-weight:600; font-size:clamp(25px,3.4vw,34px); line-height:1.12; letter-spacing:-.01em}
+.masthead .sub{margin-top:7px; font-size:13.5px; color:#D6CFF2; max-width:64ch}
+.badge-doc{font-family:var(--mono); font-size:11px; letter-spacing:.04em; border:1px solid rgba(255,255,255,.32); border-radius:999px; padding:6px 12px; color:#EDE7FB; white-space:nowrap}
+
+/* shell */
+.shell{max-width:1140px; margin:0 auto; padding:22px 24px 158px; display:grid; grid-template-columns:236px minmax(0,1fr); gap:34px; align-items:start}
+@media (max-width:940px){ .shell{grid-template-columns:minmax(0,1fr); padding-bottom:180px} .rail{display:none} }
+
+/* rail */
+.rail{position:sticky; top:18px}
+.rail h2{font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); margin-bottom:10px}
+.rail ol{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:1px}
+.rail button{width:100%; display:flex; align-items:center; gap:9px; text-align:left; background:none; border:0; padding:5px 7px; border-radius:6px; cursor:pointer; color:var(--ink-2); font-size:12.5px; line-height:1.3}
+.rail button:hover{background:var(--surface-2); color:var(--ink)}
+.rail .lt{font-family:var(--mono); font-size:11px; color:var(--ink-3); width:16px; flex:none}
+.rail .nm{flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.dot{width:7px; height:7px; border-radius:50%; flex:none; background:var(--rule-strong)}
+.dot.ok{background:var(--moss)}
+.dot.warn{background:var(--amber)}
+
+/* cards */
+.stack{display:flex; flex-direction:column; gap:18px}
+.card{background:var(--surface); border:1px solid var(--rule); border-radius:12px; padding:20px 22px; box-shadow:var(--shadow)}
+.sec-head{display:flex; align-items:baseline; gap:12px; margin-bottom:4px}
+.sec-num{font-family:var(--mono); font-size:11px; color:var(--violet); letter-spacing:.08em}
+.sec-head h2{font-family:var(--serif); font-weight:600; font-size:20px; letter-spacing:-.005em}
+.sec-desc{color:var(--ink-3); font-size:13px; margin-bottom:16px; max-width:66ch}
+
+/* painel das duas produções */
+.duo{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+@media (max-width:700px){ .duo{grid-template-columns:1fr} }
+.duo-item{border:1px solid var(--rule); border-radius:10px; padding:14px; background:var(--surface-2); display:flex; flex-direction:column; gap:8px; text-align:left; cursor:pointer; transition:.12s}
+.duo-item:hover{border-color:var(--violet)}
+.duo-item[aria-current="true"]{border-color:var(--violet); background:var(--violet-wash); box-shadow:inset 0 0 0 1px var(--violet)}
+.duo-top{display:flex; align-items:center; justify-content:space-between; gap:10px}
+.duo-n{font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--violet)}
+.duo-score{font-family:var(--mono); font-size:11px; color:var(--ink-2)}
+.duo-title{font-size:13.5px; font-weight:600; line-height:1.35; color:var(--ink); display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden}
+.duo-title.empty{font-weight:400; color:var(--ink-3); font-style:italic}
+.duo-track{height:4px; background:var(--surface); border:1px solid var(--rule); border-radius:999px; overflow:hidden}
+.duo-fill{height:100%; width:0; background:var(--violet)}
+.duo-fill.full{background:var(--moss)}
+.duo-edit{font-size:11.5px; color:var(--violet); font-weight:600}
+
+/* abas */
+.tabs{display:flex; gap:4px; border-bottom:1px solid var(--rule); margin-bottom:2px}
+.tabs button{
+  background:none; border:0; border-bottom:2px solid transparent; margin-bottom:-1px;
+  padding:9px 14px; cursor:pointer; color:var(--ink-3);
+  font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+}
+.tabs button:hover{color:var(--ink-2)}
+.tabs button[aria-selected="true"]{color:var(--violet); border-bottom-color:var(--violet)}
+.tabs .tab-hint{margin-left:auto; align-self:center; font-size:12px; color:var(--ink-3); font-family:var(--sans); letter-spacing:0; text-transform:none}
+@media (max-width:600px){ .tabs .tab-hint{display:none} }
+
+/* ficha-exemplo */
+.exemplo-card{margin-top:16px; border:1px solid var(--rule); border-radius:10px; padding:12px 14px; background:var(--surface-2)}
+.exemplo-card summary{cursor:pointer; font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--moss); list-style:none}
+.exemplo-card summary::-webkit-details-marker{display:none}
+.exemplo-card summary::before{content:"+ "}
+.exemplo-card[open] summary::before{content:"– "}
+.exemplo-nota{font-size:12.5px; color:var(--ink-3); margin-top:8px; max-width:76ch}
+.ex-row{display:flex; gap:10px; padding:9px 0; border-top:1px solid var(--rule)}
+.ex-row:first-of-type{border-top:0}
+.ex-row .lt{font-family:var(--mono); font-size:11px; color:var(--moss); flex:none; width:22px; padding-top:2px}
+.ex-row .val{font-size:12.5px; color:var(--ink-2); white-space:pre-wrap; line-height:1.5; max-width:76ch}
+.ex-row .val b{color:var(--ink); font-weight:600; display:block; margin-bottom:2px}
+
+/* fields */
+.field{padding-top:16px; margin-top:16px; border-top:1px solid var(--rule)}
+.field:first-of-type{padding-top:0; margin-top:0; border-top:0}
+.flabel{display:flex; gap:9px; align-items:flex-start; margin-bottom:7px}
+.chip-lt{font-family:var(--mono); font-size:11px; color:var(--violet); background:var(--violet-wash); border-radius:5px; padding:2px 6px; flex:none; margin-top:2px; letter-spacing:.02em}
+.flabel .txt{font-weight:600; font-size:14px; line-height:1.4}
+.flabel .req{color:var(--violet-2); font-weight:600}
+.hint{color:var(--ink-3); font-size:12.5px; margin:-2px 0 9px 39px; max-width:70ch}
+@media (max-width:600px){ .hint{margin-left:0} }
+input[type=text], textarea, select{width:100%; background:var(--surface-2); color:var(--ink); border:1px solid var(--rule); border-radius:8px; padding:9px 11px; font-family:var(--sans); font-size:14px; line-height:1.5}
+textarea{resize:vertical; min-height:88px}
+input[type=text]:focus, textarea:focus, select:focus{border-color:var(--violet); background:var(--surface)}
+select{appearance:none; background-image:linear-gradient(45deg,transparent 50%,var(--ink-3) 50%),linear-gradient(135deg,var(--ink-3) 50%,transparent 50%); background-position:calc(100% - 18px) 50%, calc(100% - 13px) 50%; background-size:5px 5px,5px 5px; background-repeat:no-repeat; padding-right:36px}
+.counter{font-family:var(--mono); font-size:11px; color:var(--ink-3); text-align:right; margin-top:5px}
+.counter.warn{color:var(--amber)}
+
+/* choices */
+.choices{display:flex; flex-wrap:wrap; gap:8px}
+.choice{position:relative}
+.choice input{position:absolute; opacity:0; width:0; height:0}
+.choice span{display:inline-block; cursor:pointer; user-select:none; border:1px solid var(--rule-strong); background:var(--surface-2); color:var(--ink-2); border-radius:999px; padding:7px 14px; font-size:13.5px; transition:.12s}
+.choice span::before{content:"( ) "; font-family:var(--mono); font-size:11px; color:var(--ink-3)}
+.choice input:checked + span{background:var(--violet-wash); border-color:var(--violet); color:var(--violet); font-weight:600}
+.choice input:checked + span::before{content:"(X) "; color:var(--violet)}
+.choice input:focus-visible + span{outline:2px solid var(--violet); outline-offset:2px}
+.ods .choice span{padding:5px 10px; font-size:12.5px}
+.ods .choice span::before{content:""}
+
+/* dicas, exemplos e notas */
+.aids{margin:10px 0 0 39px; display:flex; flex-direction:column; gap:6px}
+@media (max-width:600px){ .aids{margin-left:0} }
+details.aid{border-left:2px solid var(--rule-strong); padding-left:12px}
+details.aid summary{cursor:pointer; font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--violet); list-style:none}
+details.aid summary::-webkit-details-marker{display:none}
+details.aid summary::before{content:"+ "}
+details.aid[open] summary::before{content:"– "}
+details.aid .body{color:var(--ink-2); font-size:12.5px; margin-top:7px; max-width:74ch}
+details.aid .body p + p{margin-top:6px}
+details.aid.ex{border-left-color:var(--moss)}
+details.aid.ex summary{color:var(--moss)}
+.ex-box{background:var(--moss-wash); border-radius:8px; padding:10px 12px; margin-top:7px; font-size:12.5px; color:var(--ink); white-space:pre-wrap; line-height:1.5; max-width:74ch}
+:root[data-theme="dark"] .ex-box, :root:not([data-theme="light"]) .ex-box{color:var(--ink)}
+.ex-tag{font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--moss); display:block; margin-bottom:5px}
+.mini{margin-top:8px; border:1px solid var(--rule-strong); background:var(--surface); color:var(--ink-2); border-radius:7px; padding:5px 11px; font-size:12px; cursor:pointer}
+.mini:hover{border-color:var(--violet); color:var(--violet)}
+.mini[disabled]{opacity:.45; cursor:not-allowed}
+
+/* banners */
+.banner{display:flex; gap:12px; align-items:flex-start; border-radius:10px; padding:12px 14px; font-size:13px; line-height:1.5}
+.banner .b-lt{font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; flex:none; padding-top:1px}
+.banner.demo{background:var(--violet-wash); color:var(--violet); border:1px solid var(--rule-strong)}
+.banner.warn{background:var(--amber-wash); color:var(--amber); border:1px solid var(--amber)}
+.banner button.x{margin-left:auto; background:none; border:0; color:inherit; cursor:pointer; font-size:16px; line-height:1; padding:0 2px}
+
+.idrow{display:grid; grid-template-columns:minmax(0,1fr); gap:16px}
+.seg{display:flex; gap:6px; background:var(--surface-2); border:1px solid var(--rule); border-radius:9px; padding:4px}
+.seg button{flex:1; border:0; background:none; color:var(--ink-2); padding:7px 10px; border-radius:6px; cursor:pointer; font-size:13.5px}
+.seg button[aria-pressed=true]{background:var(--violet); color:#fff; font-weight:600}
+
+/* bar */
+.bar{position:fixed; left:0; right:0; bottom:0; background:var(--surface); border-top:1px solid var(--rule); box-shadow:0 -6px 24px -18px rgba(27,26,46,.5); z-index:20}
+.bar-in{max-width:1140px; margin:0 auto; padding:12px 24px; display:flex; gap:18px; align-items:center; flex-wrap:wrap}
+.meter{flex:1; min-width:190px}
+.meter-top{display:flex; justify-content:space-between; font-size:12px; color:var(--ink-2); margin-bottom:6px}
+.meter-top b{font-family:var(--mono); font-weight:500; color:var(--ink)}
+.track{height:5px; background:var(--surface-2); border:1px solid var(--rule); border-radius:999px; overflow:hidden}
+.fill{height:100%; width:0; background:var(--violet); transition:width .25s ease}
+.btn{border:1px solid var(--rule-strong); background:var(--surface); color:var(--ink); border-radius:9px; padding:9px 15px; cursor:pointer; font-size:13.5px}
+.btn:hover{border-color:var(--violet); color:var(--violet)}
+.btn.primary{background:var(--violet); border-color:var(--violet); color:#fff; font-weight:600; padding:10px 20px}
+.btn.primary:hover{background:var(--violet-2); border-color:var(--violet-2); color:#fff}
+.btn[disabled]{opacity:.45; cursor:not-allowed}
+.bar-actions{display:flex; gap:9px; flex-wrap:wrap; align-items:center}
+
+.pend{margin-top:14px; font-size:12.5px; color:var(--ink-2)}
+.pend ul{margin:7px 0 0; padding-left:18px; columns:2; column-gap:26px}
+@media (max-width:600px){ .pend ul{columns:1} }
+.pend li{margin-bottom:3px}
+
+.toast{position:fixed; left:50%; transform:translateX(-50%); bottom:92px; background:var(--ink); color:var(--paper); padding:11px 18px; border-radius:9px; font-size:13.5px; z-index:40; box-shadow:var(--shadow); max-width:min(92vw,460px)}
+.foot{max-width:1140px; margin:0 auto; color:var(--ink-3); font-size:12px}
+</style>
+
+<header class="masthead">
+  <div class="masthead-in">
+    <div>
+      <div class="eyebrow">Anexo 1 · Documento Orientador de APCN · Área 49</div>
+      <h1>Ficha de Destaque de Impacto Real</h1>
+      <p class="sub">O item 4.1 do Orientador pede <b>duas produções de destaque por docente permanente</b>. Preencha as duas aqui e gere o PDF no formato oficial da Área de Ciências Ambientais.</p>
+    </div>
+    <div class="badge-doc">PPGATS · UFMA</div>
+  </div>
+</header>
+
+<div class="shell">
+  <aside class="rail">
+    <h2>Campos da ficha</h2>
+    <ol id="rail"></ol>
+  </aside>
+
+  <main class="stack">
+    <section class="card">
+      <div class="sec-head"><span class="sec-num">01</span><h2>Suas duas produções de destaque</h2></div>
+      <p class="sec-desc">Cada docente permanente indica duas experiências. As duas ficam salvas aqui e podem sair num PDF único ao final.</p>
+      <div class="idrow">
+        <div>
+          <div class="flabel"><span class="txt">Docente permanente</span></div>
+          <select id="docente" aria-label="Docente permanente"></select>
+        </div>
+      </div>
+      <div class="duo" id="duo" style="margin-top:16px"></div>
+    </section>
+
+
+    <nav class="tabs" role="tablist" aria-label="Modo de uso">
+      <button type="button" id="tabSug" role="tab" aria-selected="true" aria-controls="panelSug">Sugestão pré-preenchida</button>
+      <button type="button" id="tabEdit" role="tab" aria-selected="false" aria-controls="panelEdit">Preencher a ficha</button>
+      <span class="tab-hint" id="tabHint">Leia a sugestão e depois preencha na outra aba.</span>
+    </nav>
+
+    <div id="panelSug" class="stack" role="tabpanel" aria-labelledby="tabSug">
+      <section class="card">
+        <div class="sec-head"><span class="sec-num">SUG</span><h2 id="sugTitle">Ficha-exemplo completa</h2></div>
+        <p class="sec-desc" id="sugDesc">Escolha o seu nome acima para ver a sugestão preparada para você. Enquanto isso, esta é uma ficha-exemplo, para mostrar o nível de detalhe que a Área espera nos catorze campos.</p>
+        <div id="exemploBox"></div>
+        <div style="display:flex; gap:9px; flex-wrap:wrap; margin-top:18px">
+          <button class="btn primary" id="btnUsar" type="button">Usar como base no preenchimento</button>
+          <button class="btn" id="btnGoEdit" type="button">Preencher do zero</button>
+        </div>
+      </section>
+    </div>
+
+    <div id="panelEdit" class="stack" role="tabpanel" aria-labelledby="tabEdit" hidden>
+    <section class="card">
+      <div class="sec-head"><span class="sec-num">02</span><h2>Natureza do destaque</h2></div>
+      <p class="sec-desc">Campos (a), (b), (c) e (d) do modelo oficial. Pode marcar mais de uma opção.</p>
+
+      <div class="field" id="f-a">
+        <div class="flabel"><span class="chip-lt">(a)</span><span class="txt">Impacto na Ciência e/ou na Sociedade <span class="req">*</span></span></div>
+        <div class="choices" id="c-imp">
+          <label class="choice"><input type="checkbox" value="ciencia"><span>Ciência</span></label>
+          <label class="choice"><input type="checkbox" value="sociedade"><span>Sociedade</span></label>
+        </div>
+      </div>
+
+      <div class="field" id="f-b">
+        <div class="flabel"><span class="chip-lt">(b)</span><span class="txt">Dimensões predominantes de impacto <span class="req">*</span></span></div>
+        <div class="choices" id="c-dim">
+          <label class="choice"><input type="checkbox" value="Social"><span>Social</span></label>
+          <label class="choice"><input type="checkbox" value="Ambiental"><span>Ambiental</span></label>
+          <label class="choice"><input type="checkbox" value="Econômico"><span>Econômico</span></label>
+          <label class="choice"><input type="checkbox" value="Institucional"><span>Institucional</span></label>
+          <label class="choice"><input type="checkbox" value="Complementar"><span>Complementar</span></label>
+        </div>
+      </div>
+
+      <div class="field" id="f-c">
+        <div class="flabel"><span class="chip-lt">(c)</span><span class="txt">Docente(s) permanente(s) envolvido(a)(s) <span class="req">*</span></span></div>
+        <input type="text" id="v-c" placeholder="Nome completo do docente">
+      </div>
+
+      <div class="field" id="f-d">
+        <div class="flabel"><span class="chip-lt">(d)</span><span class="txt">Natureza da produção destacada <span class="req">*</span></span></div>
+        <div class="choices" id="c-nat">
+          <label class="choice"><input type="checkbox" value="ptt"><span>Produto técnico e tecnológico</span></label>
+          <label class="choice"><input type="checkbox" value="livro"><span>Livro ou capítulo</span></label>
+          <label class="choice"><input type="checkbox" value="extensao"><span>Projeto de extensão</span></label>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="sec-head"><span class="sec-num">03</span><h2>A experiência</h2></div>
+      <p class="sec-desc">Campos (e), (f) e (g).</p>
+
+      <div class="field" id="f-e">
+        <div class="flabel"><span class="chip-lt">(e)</span><span class="txt">Título da experiência do destaque <span class="req">*</span></span></div>
+        <input type="text" id="v-e" placeholder="Nome da experiência, não do artigo">
+      </div>
+
+      <div class="field" id="f-f">
+        <div class="flabel"><span class="chip-lt">(f)</span><span class="txt">Três palavras-chave <span class="req">*</span></span></div>
+        <input type="text" id="v-f" placeholder="palavra 1; palavra 2; palavra 3">
+        <div class="counter" id="cnt-f"></div>
+      </div>
+
+      <div class="field" id="f-g">
+        <div class="flabel"><span class="chip-lt">(g)</span><span class="txt">Objetivo da experiência, identificando o foco principal <span class="req">*</span></span></div>
+        <textarea id="v-g" rows="3" placeholder="O que a experiência se propôs a transformar."></textarea>
+        <div class="counter" id="cnt-g"></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="sec-head"><span class="sec-num">04</span><h2>Impactos, ODS e evidências</h2></div>
+      <p class="sec-desc">Campo (h) — o mais importante da ficha. É aqui que a Área procura a transformação verificável.</p>
+
+      <div class="field" id="f-ods">
+        <div class="flabel"><span class="txt">ODS mobilizados</span></div>
+        <p class="hint">Entram automaticamente no fim do campo (h) do PDF, junto com as metas.</p>
+        <div class="choices ods" id="c-ods"></div>
+        <div style="margin-top:12px">
+          <div class="flabel"><span class="txt">Metas declaradas</span></div>
+          <input type="text" id="v-metas" placeholder="Ex.: 15.5; 15.9; 4.7">
+        </div>
+      </div>
+
+      <div class="field" id="f-h">
+        <div class="flabel"><span class="chip-lt">(h)</span><span class="txt">Descrição dos impactos <span class="req">*</span></span></div>
+        <p class="hint">Ações intencionais de atendimento aos ODS, parcerias, sinergias entre ensino, pesquisa &amp; inovação e extensão, e evidências documentais.</p>
+        <textarea id="v-h" rows="10" placeholder="O que mudou, para quem, e como isso pode ser verificado."></textarea>
+        <div class="counter" id="cnt-h"></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="sec-head"><span class="sec-num">05</span><h2>Alcance</h2></div>
+      <p class="sec-desc">Campos (i), (j), (k) e (l).</p>
+
+      <div class="field" id="f-i">
+        <div class="flabel"><span class="chip-lt">(i)</span><span class="txt">Local onde a experiência foi ou é aplicada <span class="req">*</span></span></div>
+        <input type="text" id="v-i" placeholder="Município, comunidade, campus ou território">
+      </div>
+
+      <div class="field" id="f-j">
+        <div class="flabel"><span class="chip-lt">(j)</span><span class="txt">Beneficiários dos impactos <span class="req">*</span></span></div>
+        <input type="text" id="v-j" placeholder="Quem foi beneficiado">
+      </div>
+
+      <div class="field" id="f-k">
+        <div class="flabel"><span class="chip-lt">(k)</span><span class="txt">Financiamentos obtidos <span class="req">*</span></span></div>
+        <input type="text" id="v-k" placeholder="Agência, edital, processo e vigência — ou “Sem financiamento externo”">
+      </div>
+
+      <div class="field" id="f-l">
+        <div class="flabel"><span class="chip-lt">(l)</span><span class="txt">Potencial de replicabilidade <span class="req">*</span></span></div>
+        <textarea id="v-l" rows="3" placeholder="Onde mais isso pode ser aplicado."></textarea>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="sec-head"><span class="sec-num">06</span><h2>Comprovação</h2></div>
+      <p class="sec-desc">Campos (n) e (o). O modelo oficial não possui a alínea (m).</p>
+
+      <div class="field" id="f-n">
+        <div class="flabel"><span class="chip-lt">(n)</span><span class="txt">Links de documentos comprobatórios <span class="req">*</span></span></div>
+        <textarea id="v-n" rows="4" placeholder="Um por linha"></textarea>
+      </div>
+
+      <div class="field" id="f-o">
+        <div class="flabel"><span class="chip-lt">(o)</span><span class="txt">Links de produtos originados <span class="req">*</span></span></div>
+        <textarea id="v-o" rows="4" placeholder="DOI, repositório, guia, software, matéria de divulgação…"></textarea>
+      </div>
+
+      <div class="pend" id="pendBox"></div>
+    </section>
+
+      <p class="foot">Rascunhos ficam salvos apenas neste navegador. Para levar a outro computador ou enviar à coordenação, use “Exportar”.</p>
+    </div>
+
+  </main>
+</div>
+
+<div class="bar">
+  <div class="bar-in">
+    <div class="meter">
+      <div class="meter-top"><span id="meterLabel">Ficha aberta</span><b id="meterVal">0/14</b></div>
+      <div class="track"><div class="fill" id="meterFill"></div></div>
+    </div>
+    <div class="bar-actions">
+      <input type="file" id="importFile" accept="application/json,.json" hidden>
+      <button class="btn" id="btnImport" type="button">Importar</button>
+      <button class="btn" id="btnExport" type="button">Exportar</button>
+      <button class="btn" id="btnPdf1" type="button">PDF só desta</button>
+      <button class="btn primary" id="btnPdf2" type="button">Gerar as duas fichas</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" hidden></div>
+
+<script id="drafts" type="application/json">{"André Luiz Borba do Nascimento":[{"n":1,"revisar":false,"imp":["ciencia","sociedade"],"dims":["Social","Ambiental","Complementar"],"nat":["extensao"],"e":"Etnobiologia aplicada à conservação e ao uso sustentável da sociobiodiversidade em comunidades quilombolas da Baixada Maranhense","c":"André Luiz Borba do Nascimento","f":"etnobiologia; sociobiodiversidade; comunidades quilombolas","g":"Documentar critérios de uso e prioridades de conservação de plantas junto a comunidade quilombola, devolvendo às famílias subsídios para o manejo local da vegetação.","h":"A pesquisa participativa registrou o conhecimento ecológico local e definiu, com a comunidade, espécies prioritárias para conservação e uso, articulando ensino (disciplinas D08/D24), pesquisa e devolutiva comunitária. Ações alinhadas aos ODS 15 (vida terrestre) e 2 (segurança alimentar) [metas específicas: PREENCHER]. Evidências documentais: [PREENCHER — atas de reunião comunitária, registros fotográficos, termo de anuência].","i":"Comunidade quilombola da Baixada Maranhense [CONFERIR nome da comunidade e município]","j":"Famílias quilombolas; associação comunitária [CONFERIR]","k":"[CONFERIR — vinculação a projeto CNPq (PPBio/FitoAmazônia) ou bolsas institucionais]","l":"Replicável às comunidades quilombolas e agroextrativistas do Médio Mearim, território prioritário do PPGATS.","nlinks":"","o":"Artigo originado: RABELO, T. O.; NASCIMENTO, A. L. B.; ALMEIDA JR., E. B. J. Ethnobiology and Ethnomedicine, v. 21, 62, 2025, DOI 10.1186/s13002-025-00798-w. Demais links: [PREENCHER]"},{"n":2,"revisar":true,"imp":["ciencia","sociedade"],"dims":["Social","Ambiental"],"nat":["extensao"],"e":"FitoAmazônia/PPBio — plantas alimentícias e formação de rede em etnobiologia no Maranhão","c":"André Luiz Borba do Nascimento","f":"plantas alimentícias; bioeconomia; conhecimento tradicional","g":"Mapear a diversidade de plantas alimentícias e seus polinizadores e formar recursos humanos em etnobiologia, conectando o Maranhão às redes nacionais de pesquisa em biodiversidade.","h":"O projeto articula levantamentos etnobotânicos, formação de estudantes (IC e pós-graduação) e diálogo com comunidades sobre uso alimentar da flora nativa, em alinhamento aos ODS 2 e 15 [metas: PREENCHER]. Sinergia com o LECET e com as disciplinas D08 e D24. Evidências: [PREENCHER — página do projeto, relatórios CNPq, produtos].","i":"Maranhão (campi UFMA e comunidades parceiras) [CONFERIR abrangência]","j":"Estudantes; comunidades rurais parceiras [CONFERIR]","k":"CNPq [CONFERIR edital e vigência dos projetos PPBio/FitoAmazônia]","l":"Extensível às três linhas do PPGATS via projetos estruturantes.","nlinks":"","o":"Artigos correlatos: J. Ethnobiology and Ethnomedicine 2025 (DOI 10.1186/s13002-025-00769-1) e 2026 (DOI 10.1186/s13002-026-00881-w). Links: [PREENCHER]"}],"Elidio Armando Exposto Guarçoni":[{"n":1,"revisar":true,"imp":["ciencia","sociedade"],"dims":["Ambiental","Institucional"],"nat":["ptt"],"e":"Herbário Maranhão Continental (BMA) — estruturação, curadoria e rede de coleções do interior maranhense","c":"Elidio Armando Exposto Guarçoni","f":"herbário; coleções botânicas; flora do Maranhão","g":"Consolidar coleção botânica de referência do continente maranhense, dando suporte a inventários, ensino e políticas de conservação.","h":"O BMA reúne o material-testemunho dos levantamentos florísticos do grupo (novos registros de macrófitas e Droseraceae para o estado), integra o INCT Herbário Virtual da Flora e dos Fungos e apoia a formação em taxonomia na graduação e na pós-graduação. Alinhamento ao ODS 15 [metas: PREENCHER]. Evidências: [PREENCHER — registro no Index Herbariorum/REFLORA, nº de exsicatas].","i":"Campus Bacabal (CCBa/UFMA) [CONFERIR curadoria formal]","j":"Comunidade acadêmica; órgãos ambientais; consultores em licenciamento","k":"[CONFERIR — FAPEMA/CNPq (projeto Caatinga maranhense) e apoios institucionais]","l":"Rede com o Herbário GRAU (Grajaú) amplia a cobertura para o sul do estado.","nlinks":"","o":"Artigos originados: Brazilian Journal of Biology (DOIs 10.1590/1519-6984.299865; 10.1590/1519-6984.281276; 10.1590/1519-6984.280876). Links: [PREENCHER]"},{"n":2,"revisar":true,"imp":["ciencia"],"dims":["Ambiental"],"nat":["ptt"],"e":"Flora do Maranhão — novos registros e subsídios para conservação e gestão ambiental","c":"Elidio Armando Exposto Guarçoni","f":"florística; macrófitas aquáticas; conservação","g":"Ampliar o conhecimento da flora maranhense com inventários de áreas úmidas e cerrados, gerando dados para manejo e licenciamento.","h":"Os levantamentos em áreas úmidas de comunidades quilombolas e cerrados do leste maranhense produziram novos registros para o estado e formaram estudantes em botânica de campo (disciplina D11). Dados alimentam a Flora e Funga do Brasil e subsidiam planos de manejo. ODS 15 e 6 [metas: PREENCHER]. Evidências: [PREENCHER].","i":"Leste e continente maranhense [CONFERIR municípios]","j":"Gestores ambientais; comunidades locais; comunidade científica","k":"FAPEMA/CNPq [CONFERIR projetos]","l":"Metodologia replicável ao Médio Mearim no âmbito das dissertações da Linha 1.","nlinks":"","o":"Artigos originados: Rev. Bras. Geografia Física (DOI 10.26848/rbgf.v18.4.p3255-3268); Phytotaxa (DOI 10.11646/phytotaxa.691.1.9). Links: [PREENCHER]"}],"Raysa Valéria Carvalho Saraiva":[{"n":1,"revisar":true,"imp":["ciencia","sociedade"],"dims":["Ambiental"],"nat":["ptt"],"e":"Inventários florísticos de restingas e áreas úmidas em unidades de conservação e sítio Ramsar","c":"Raysa Valéria Carvalho Saraiva","f":"restinga; sítio Ramsar; unidades de conservação","g":"Documentar a flora de restingas e áreas úmidas protegidas do Maranhão, subsidiando a gestão das unidades de conservação.","h":"Levantamentos em UC de Guimarães e em sítio Ramsar da Amazônia oriental geraram listas de espécies e dados de vegetação diretamente aplicáveis aos planos de manejo, com participação de estudantes. ODS 14 e 15 [metas: PREENCHER]. Evidências: [PREENCHER — ofícios/devolutivas aos gestores das UCs].","i":"Guimarães e Baixada/litoral maranhense [CONFERIR]","j":"Gestores de UCs; ICMBio/SEMA [CONFERIR]; comunidades do entorno","k":"CNPq Universal [CONFERIR vigência]","l":"Protocolo replicável às demais UCs costeiras do estado.","nlinks":"","o":"Artigos originados: Biota Neotropica (DOI 10.1590/1676-0611-BN-2024-1663); Brazilian J. Biology (DOI 10.1590/1519-6984.288620). Links: [PREENCHER]"},{"n":2,"revisar":true,"imp":["ciencia","sociedade"],"dims":["Social","Ambiental"],"nat":["extensao"],"e":"Regeneração pós-fogo e restauração biocultural no ecótono Cerrado-Amazônia","c":"Raysa Valéria Carvalho Saraiva","f":"fogo; restauração; ecótono Cerrado-Amazônia","g":"Compreender a regeneração da vegetação após fogo e indicar espécies para restauração com valor biocultural.","h":"A pesquisa sobre relações solo-vegetação pós-fogo e sobre espécies para restauração biocultural fornece base técnica para recuperação de áreas degradadas no território do PPGATS, tema do Plano de Impacto Social (Seção 6.3). ODS 13 e 15 [metas: PREENCHER]. Evidências: [PREENCHER].","i":"Ecótono Cerrado-Amazônia (MA) [CONFERIR sítios]","j":"Brigadas/órgãos de manejo do fogo; comunidades rurais [CONFERIR]","k":"[PREENCHER]","l":"Aplicável às áreas degradadas do Médio Mearim (projetos estruturantes).","nlinks":"","o":"Artigos originados: Acta Botanica Brasilica (DOI 10.1590/1677-941X-ABB-2023-0169); Ethnobiology and Conservation (DOI 10.15451/ec2023-02-12.03-1-15). Links: [PREENCHER]"}],"Marcônio Martins Rodrigues":[{"n":1,"revisar":false,"imp":["ciencia","sociedade"],"dims":["Ambiental","Econômico"],"nat":["ptt"],"e":"Valorização de resíduos agroindustriais em silagens — tecnologia para a produção animal familiar","c":"Marcônio Martins Rodrigues","f":"silagem; resíduos agroindustriais; pecuária familiar","g":"Converter resíduos agroindustriais (restolho de abacaxi, bagaço de cana, haste de mandioca) em alimento animal de qualidade, reduzindo descarte e custo de produção.","h":"Os protocolos de ensilagem validados experimentalmente, incluindo o projeto FAPEMA sobre gases de efeito estufa da silagem de resíduo de abacaxi, unem mitigação de emissões e aproveitamento de subprodutos, com formação de mestrando e potencial de transferência a produtores. ODS 12 e 13 [metas: PREENCHER]. Evidências: [PREENCHER — relatórios FAPEMA, dias de campo].","i":"Maranhão/Piauí [CONFERIR unidades experimentais]","j":"Produtores familiares; cooperativas [CONFERIR ações de transferência]","k":"FAPEMA (projeto GEE em silagem, 2018–) [CONFERIR nº]","l":"Transferível às cooperativas do Médio Mearim via ações da Seção 7.4.","nlinks":"","o":"Artigos originados: Agronomy (DOI 10.3390/agronomy14092140); NZ J. Agricultural Research (DOI 10.1080/00288233.2024.2436156). Links: [PREENCHER]"},{"n":2,"revisar":true,"imp":["ciencia","sociedade"],"dims":["Ambiental","Econômico"],"nat":["ptt"],"e":"Sistemas silvipastoris e pastagens consorciadas para produção sustentável no semiárido","c":"Marcônio Martins Rodrigues","f":"sistema silvipastoril; pastagens consorciadas; sustentabilidade","g":"Avaliar sistemas silvipastoris com cajueiro e misturas gramínea-leguminosa como alternativas de produção ovina com menor impacto ambiental.","h":"Os resultados demonstram viabilidade produtiva de sistemas que integram árvore, pasto e animal, com ciclagem de nutrientes e redução de insumos, e alimentam as disciplinas e projetos da interface L2/L3. ODS 15 e 12 [metas: PREENCHER]. Evidências: [PREENCHER].","i":"[CONFERIR local dos experimentos]","j":"Ovinocultores familiares; técnicos de ATER [CONFERIR]","k":"[PREENCHER]","l":"Aplicável aos quintais produtivos e sistemas agroflorestais do babaçu.","nlinks":"","o":"Artigos originados: J. Agricultural Studies (DOI 10.5296/jas.v10i2.19332); SAJAS (DOI 10.4314/sajas.v52i1.4). Links: [PREENCHER]"}],"Michel Ricardo de Barros Chaves":[{"n":1,"revisar":true,"imp":["ciencia","sociedade"],"dims":["Ambiental"],"nat":["ptt"],"e":"Monitoramento de contaminantes orgânicos em sedimentos do Delta do Parnaíba — subsídios à gestão costeira","c":"Michel Ricardo de Barros Chaves","f":"HPAs; sedimentos; monitoramento ambiental","g":"Diagnosticar concentrações, fontes e riscos de hidrocarbonetos policíclicos aromáticos em sedimentos do Delta do Parnaíba.","h":"O diagnóstico publicado em periódico do estrato superior fornece linha de base para gestão da APA do Delta e para avaliação de risco ecológico, com métodos transferíveis ao monitoramento dos rios do Médio Mearim (disciplina D05). ODS 6 e 14 [metas: PREENCHER]. Evidências e devolutivas a gestores: [PREENCHER].","i":"Delta do Parnaíba (PI/MA)","j":"Órgãos ambientais; comunidades pesqueiras [CONFERIR]","k":"[PREENCHER]","l":"Protocolo replicável à bacia do Mearim (projeto estruturante de recursos hídricos).","nlinks":"","o":"Artigo originado: Chemosphere (DOI 10.1016/j.chemosphere.2023.140889). Links: [PREENCHER]"},{"n":2,"revisar":true,"imp":["ciencia"],"dims":["Ambiental","Complementar"],"nat":["ptt"],"e":"Biodegradação fúngica de PET — biotecnologia para o passivo de resíduos plásticos","c":"Michel Ricardo de Barros Chaves","f":"biodegradação; PET; biotecnologia ambiental","g":"Selecionar fungos com potencial de despolimerização de PET para rotas biotecnológicas de tratamento de resíduos plásticos.","h":"A triagem publicada em Polymers estabelece base biotecnológica para o eixo de biorremediação da Linha 2 (disciplina D12) e para pesquisas aplicadas ao passivo plástico dos rios e cidades maranhenses. ODS 12 e 14 [metas: PREENCHER]. Evidências: [PREENCHER].","i":"[CONFERIR laboratórios]","j":"Setor de saneamento/resíduos; comunidade científica","k":"[PREENCHER]","l":"Escalável em parceria com centrais multiusuário e setor produtivo.","nlinks":"","o":"Artigo originado: Polymers (DOI 10.3390/polym15061581). Links: [PREENCHER]"}],"Joel Félix Silva Diniz Filho":[{"n":1,"revisar":true,"imp":["ciencia"],"dims":["Ambiental","Complementar"],"nat":["ptt"],"e":"Nanopartículas verdes a partir de biomassa regional (mesocarpo de babaçu) — síntese sustentável de nanomateriais","c":"Joel Félix Silva Diniz Filho","f":"nanotecnologia verde; babaçu; materiais sustentáveis","g":"Desenvolver rotas verdes de síntese de nanomateriais a partir de biomassa regional, agregando valor a subprodutos do babaçu.","h":"A síntese sustentável de grafeno e nanocompósitos publicada em ACS Omega demonstra a viabilidade de valorização de biomassa maranhense em materiais de alto valor, eixo da disciplina D14 e da bioeconomia do babaçu (projeto estruturante). ODS 9 e 12 [metas: PREENCHER]. Evidências: [PREENCHER].","i":"UFMA (CeMAM/CeMatBio) [CONFERIR]","j":"Cadeia do babaçu (potencial); comunidade científica","k":"[PREENCHER]","l":"Extensível a outras biomassas regionais (pitomba, arroz) no projeto de biomateriais.","nlinks":"","o":"Artigo originado: ACS Omega (DOI 10.1021/acsomega.5c01094). Links: [PREENCHER]"},{"n":2,"revisar":true,"imp":["ciencia"],"dims":["Institucional","Complementar"],"nat":["ptt"],"e":"Métodos avançados de caracterização de materiais e biossistemas nas centrais multiusuário","c":"Joel Félix Silva Diniz Filho","f":"caracterização de materiais; microscopia; centrais multiusuário","g":"Consolidar protocolos de caracterização ultraestrutural e vibracional acessíveis à comunidade de pesquisa via centrais multiusuário.","h":"A expertise em caracterização avançada (Cells, ACS Omega, Polymers) sustenta serviços analíticos das centrais CeMAM/CeMatBio para ecotoxicologia e materiais ambientais, formando usuários da graduação e da pós. ODS 9 [metas: PREENCHER]. Evidências: [PREENCHER — regimento/agenda das centrais].","i":"UFMA [CONFERIR campus das centrais]","j":"Pesquisadores e estudantes usuários das centrais","k":"[PREENCHER]","l":"Base para a nanorremediação e sensores previstos na Linha 2.","nlinks":"","o":"Artigos: Cells (DOI 10.3390/cells12030451); Polymers (DOI 10.3390/polym14071405). Links: [PREENCHER]"}],"Kerolayne de Melo Nogueira":[{"n":1,"revisar":true,"imp":["ciencia"],"dims":["Social","Complementar"],"nat":["extensao"],"e":"Cooperação internacional em biomarcadores e reposicionamento de fármacos aplicáveis à saúde ambiental","c":"Kerolayne de Melo Nogueira","f":"biomarcadores; reposicionamento de fármacos; saúde ambiental","g":"Desenvolver e validar modelos experimentais e biomarcadores de inflamação aplicáveis à interface saúde-ambiente, em cooperação com a Queen Mary University of London.","h":"A linha de pesquisa em inibidores de pepsina, biopolímeros protetores de mucosa e quantificação de mieloperoxidase estabelece métodos transferíveis à avaliação de efeitos de contaminantes sobre sistemas biológicos (subárea de saúde ambiental da Linha 2), com formação de estudantes e coautoria internacional. ODS 3 [metas: PREENCHER]. Evidências da cooperação: [PREENCHER — termo/registro do acordo, mobilidades].","i":"UFMA/QMUL [CONFERIR instrumento formal da cooperação]","j":"Comunidade científica; sistema de saúde (potencial)","k":"[PREENCHER]","l":"Modelos aplicáveis ao biomonitoramento de exposições no MATOPIBA.","nlinks":"","o":"Artigos originados: The Laryngoscope (DOIs 10.1002/lary.31239; 10.1002/lary.30093); Frontiers Mol. Biosci. (DOI 10.3389/fmolb.2025.1559499). Links: [PREENCHER]"},{"n":2,"revisar":true,"imp":["sociedade"],"dims":["Social","Ambiental"],"nat":["extensao"],"e":"[DEFINIR COM A DOCENTE] Ação de extensão em uso racional e descarte adequado de medicamentos","c":"Kerolayne de Melo Nogueira","f":"uso racional de medicamentos; descarte de fármacos; educação em saúde","g":"[PREENCHER — sugestão: levar à comunidade acadêmica e às escolas do Médio Mearim orientação sobre uso racional e descarte de medicamentos, prevenindo a contaminação ambiental por resíduos farmacêuticos.]","h":"[PREENCHER — a experiência precisa ser definida e comprovada pela docente; a temática do descarte de fármacos como contaminante emergente já consta das justificativas da proposta (ficha de produção, EXCLI Journal) e conecta ODS 3, 6 e 12. Evidências: PREENCHER.]","i":"[PREENCHER]","j":"[PREENCHER]","k":"[PREENCHER]","l":"Integrável às ações de extensão da Seção 7.4 e ao Plano de Impacto Social (6.3).","nlinks":"","o":"[PREENCHER]"}],"Eduily Benvindo Vaz Freire":[{"n":1,"revisar":false,"imp":["ciencia"],"dims":["Institucional","Complementar"],"nat":["ptt"],"e":"Códigos computacionais para modelagem multinível de materiais (integração GULP-ORCA e rotinas em Python)","c":"Eduily Benvindo Vaz Freire","f":"software científico; modelagem multinível; materiais","g":"Desenvolver e disponibilizar códigos que integram modelagem clássica e quântica (GULP-ORCA) e rotinas de análise, reduzindo a barreira de entrada à simulação de materiais.","h":"Os códigos desenvolvidos pelo grupo — geração de arquivos de entrada, otimização Mott-Littleton, análise de modelos termoluminescentes e OSL em Python — foram apresentados em congressos e sustentam o artigo metodológico no Journal of Physical Chemistry A (2026). Constituem produto tecnológico de apoio à disciplina D15 e à formação de discentes em simulação aplicada a materiais para energia. ODS 7 e 9 [metas: PREENCHER]. Evidências/repositório: [PREENCHER — link do código].","i":"UFS/UFPI/UFMA (CCCO)","j":"Estudantes e pesquisadores de modelagem computacional","k":"CNPq (bolsas) [CONFERIR]","l":"Aplicável a fotocatalisadores e adsorventes de interesse ambiental nas dissertações da Linha 2.","nlinks":"","o":"Artigo originado: J. Physical Chemistry A (DOI 10.1021/acs.jpca.6c03901). Repositório: [PREENCHER]"},{"n":2,"revisar":false,"imp":["sociedade"],"dims":["Social","Complementar"],"nat":["ptt","extensao"],"e":"Popularização e ensino de física: OBFEP, feiras científicas (CIENART) e divulgação em rede social (Physicose)","c":"Eduily Benvindo Vaz Freire","f":"popularização da ciência; olimpíadas científicas; ensino de física","g":"Ampliar o acesso de estudantes de escolas públicas à física por meio de materiais didáticos, avaliação de feiras científicas e divulgação em mídias sociais.","h":"A docente elaborou a resolução comentada das provas da Olimpíada Brasileira de Física das Escolas Públicas (OBFEP/Sergipe, 2022), atuou como avaliadora e organizadora de feiras científicas estaduais (CIENART/SE, 2022–2023) e mantém o perfil Physicose de divulgação e ensino de física. O repertório transfere-se às ações de popularização do PPGATS (Seções 3.5.1 e 7.4) junto às escolas públicas do Médio Mearim. ODS 4 [metas: PREENCHER]. Evidências: [PREENCHER — links dos materiais e do perfil].","i":"Sergipe (2022–2023); Codó/Médio Mearim (a partir de 2026)","j":"Estudantes e professores da educação básica pública","k":"[PREENCHER]","l":"Replicável nas feiras e olimpíadas científicas do Maranhão com discentes do PPGATS.","nlinks":"","o":"Materiais OBFEP e perfil Physicose: [PREENCHER links]"}],"Aluisio José Fernandes Júnior":[{"n":1,"revisar":false,"imp":["ciencia","sociedade"],"dims":["Ambiental","Institucional"],"nat":["ptt"],"e":"Herbário GRAU — criação e curadoria da coleção botânica do sul do Maranhão","c":"Aluisio José Fernandes Júnior","f":"herbário; curadoria; flora do sul maranhense","g":"Criar e consolidar a coleção botânica de referência da região de Grajaú, documentando a flora da transição Cerrado-Amazônia-Cocais.","h":"Fundado em fevereiro de 2022, o Herbário GRAU treina estudantes em coleta, herborização e identificação, deposita material-testemunho dos projetos regionais (Malvaceae-MA; BioSig) e opera em rede com o BMA e a Flora e Funga do Brasil. ODS 15 [metas: PREENCHER]. Evidências: [PREENCHER — ato de criação, nº de exsicatas, registro em índices de herbários].","i":"Centro de Ciências de Grajaú (CCGR/UFMA)","j":"Estudantes; pesquisadores; órgãos ambientais do sul do MA","k":"[PREENCHER — apoios institucionais]","l":"Modelo replicável a outros campi do interior; base dos inventários da Linha 1 no Destaque Territorial.","nlinks":"","o":"Artigo correlato: Phytotaxa (DOI 10.11646/phytotaxa.545.3.4). Links: [PREENCHER]"},{"n":2,"revisar":false,"imp":["ciencia","sociedade"],"dims":["Ambiental","Complementar"],"nat":["ptt","extensao"],"e":"Flora e Funga do Brasil e guias de identificação — monografias de Malvaceae e popularização da botânica (Flora dos Azulejos)","c":"Aluisio José Fernandes Júnior","f":"Flora do Brasil; guias de identificação; popularização da botânica","g":"Disponibilizar monografias taxonômicas de acesso aberto e aproximar a botânica do público por guias fotográficos e pela leitura botânica de azulejos históricos.","h":"O docente responde por dezesseis gêneros de Malvaceae publicados na Flora e Funga do Brasil (JBRJ), coassina guias fotográficos de identificação (Field Museum/Field Guides — Malvaceae do Xingu; plantas de Algodoal) e integra o projeto Flora dos Azulejos, de popularização e interdisciplinaridade vinculado à Flora da Ilha Grande. ODS 15 e 4 [metas: PREENCHER]. Evidências: [PREENCHER — links das monografias e guias].","i":"Nacional (plataforma JBRJ); Maranhão e Pará (guias)","j":"Comunidade científica; estudantes; público geral","k":"[CONFERIR — Programa Reflora/SiBBr]","l":"Guias replicáveis para a flora do Médio Mearim como produtos de dissertações.","nlinks":"","o":"Monografias na Flora e Funga do Brasil e guias (Field Guides): [PREENCHER links]; artigo correlato TAXON (DOI 10.1002/tax.12640)"}],"Hawbertt Rocha Costa":[{"n":1,"revisar":false,"imp":["ciencia","sociedade"],"dims":["Social","Complementar"],"nat":["ptt","extensao"],"e":"Museu Game Ciência — curadoria de espaço não formal de divulgação científica com jogos digitais","c":"Hawbertt Rocha Costa","f":"museu de ciências; jogos digitais; divulgação científica","g":"Manter espaço não formal de divulgação científica baseado em jogos, aproximando estudantes da educação básica dos temas de ciência e sociedade.","h":"O Museu Game Ciência (MGC), descrito na infraestrutura da proposta (Seção 1.9), articula curadoria, formação de professores e pesquisa sobre divulgação científica na dimensão sociocultural, com produção associada em periódicos A1/A2 do ensino de ciências. Constitui a principal estrutura de popularização do PPGATS para temas socioambientais. ODS 4 [metas: PREENCHER]. Evidências: [PREENCHER — registros de visitação e ações].","i":"Campus Bacabal (CCBa/UFMA)","j":"Estudantes e professores da educação básica do Médio Mearim","k":"FAPEMA (projeto de objetos de aprendizagem, 2017–2021) [CONFERIR]","l":"Itinerância pelas escolas do território (ações da Seção 7.4).","nlinks":"","o":"Artigo originado: RBPEC (DOI 10.28976/1984-2686rbpec2024u713738). Links do MGC: [PREENCHER]"},{"n":2,"revisar":false,"imp":["ciencia","sociedade"],"dims":["Social","Complementar"],"nat":["ptt"],"e":"Jogos e objetos de aprendizagem para o ensino de ciências (Planeta Química e gamificação por DBR)","c":"Hawbertt Rocha Costa","f":"jogos didáticos; gamificação; ensino de química","g":"Desenvolver e validar jogos e estratégias gamificadas para a aprendizagem de conceitos de ciências, com metodologia de Pesquisa Baseada em Design.","h":"Os recursos educacionais desenvolvidos (jogo Planeta Química; estratégias de gamificação validadas por DBR) são produtos técnicos com aplicação direta na formação de professores e nas ações de educação ambiental da Linha 3. ODS 4 [metas: PREENCHER]. Evidências e repositórios: [PREENCHER].","i":"Bacabal e rede pública do Médio Mearim [CONFERIR escolas]","j":"Professores e estudantes da educação básica","k":"FAPEMA [CONFERIR]","l":"Transponível a temas ambientais (resíduos, clima) nas dissertações da L3.","nlinks":"","o":"Artigos originados: Química Nova na Escola (2024); IENCI (DOI 10.22600/1518-8795.ienci/2025v30n2p01). Links: [PREENCHER]"}],"Juliana Rodrigues Rocha":[{"n":1,"revisar":false,"imp":["sociedade"],"dims":["Social","Complementar"],"nat":["extensao"],"e":"Espaço Ciência Maria Laura Lopes — divulgação científica e formação cidadã em Bacabal","c":"Juliana Rodrigues Rocha","f":"espaço não formal; divulgação científica; formação de professores","g":"Promover divulgação científica e discussão de questões socioambientais em espaço não formal universitário no interior maranhense.","h":"As ações do Espaço Ciência Maria Laura Lopes (ECMLL, Seção 1.14 da proposta), como o piquenique científico Gregor Mendel, aproximam a universidade das escolas e famílias de Bacabal e alimentam a pesquisa sobre espaços não formais na formação de professores. ODS 4 [metas: PREENCHER]. Evidências: [PREENCHER — registros das ações].","i":"Campus Bacabal (CCBa/UFMA)","j":"Estudantes da educação básica; licenciandos; comunidade","k":"[PREENCHER]","l":"Programação integrável ao calendário de extensão do PPGATS (7.4).","nlinks":"","o":"Trabalho originado: anais do IX ENEBIO (2024). Links: [PREENCHER]"},{"n":2,"revisar":false,"imp":["ciencia","sociedade"],"dims":["Social","Ambiental"],"nat":["extensao"],"e":"Gestão de resíduos sólidos em Escola Família Agrícola — diagnóstico participativo com a Matriz FOFA","c":"Juliana Rodrigues Rocha","f":"resíduos sólidos; escola do campo; educação ambiental","g":"Diagnosticar participativamente a gestão de resíduos sólidos em Escola Família Agrícola e construir ações de educação ambiental com a comunidade escolar.","h":"O projeto, financiado pela FAPEMA, aplicou a Matriz FOFA com estudantes e educadores da EFA, integrando educação ambiental crítica e gestão de resíduos na realidade das escolas do campo — público prioritário da Linha 3. ODS 4 e 12 [metas: PREENCHER]. Evidências: [PREENCHER — relatório FAPEMA, produtos da escola].","i":"Escola Família Agrícola no Maranhão [CONFERIR município]","j":"Comunidade escolar da EFA; famílias agricultoras","k":"FAPEMA [CONFERIR edital]","l":"Replicável às demais EFAs e escolas do campo do Médio Mearim.","nlinks":"","o":"Trabalho originado: anais do XI EPEA (2023). Links: [PREENCHER]"}],"Emerson Dalla Chieza":[{"n":1,"revisar":false,"imp":["ciencia","sociedade"],"dims":["Ambiental","Econômico"],"nat":["ptt"],"e":"Adubação verde e plantas de cobertura para a agricultura familiar do Médio Mearim","c":"Emerson Dalla Chieza","f":"adubação verde; plantas de cobertura; agroecologia","g":"Selecionar espécies de cobertura do solo adaptadas à região do Médio Mearim e gerar recomendações para a transição agroecológica da agricultura familiar.","h":"Os experimentos com plantas de cobertura e adubação verde substituem insumos externos por processos biológicos, recuperando matéria orgânica de solos degradados — núcleo técnico da transição agroecológica prevista pela Linha 3 e pelo Plano de Impacto Social. ODS 2 e 15 [metas: PREENCHER]. Evidências: [PREENCHER — unidades demonstrativas, dias de campo].","i":"Região do Médio Mearim [CONFERIR áreas experimentais]","j":"Agricultores familiares; técnicos de ATER","k":"[PREENCHER]","l":"Base para tecnologias sociais transferíveis via cooperativas (Seção 7.4).","nlinks":"","o":"Artigos originados: Agri-Environmental Sciences (DOIs 10.36725/agries.v11i2.10827; 10.36725/agries.v11i2.10824). Links: [PREENCHER]"},{"n":2,"revisar":false,"imp":["ciencia","sociedade"],"dims":["Social","Complementar"],"nat":["extensao"],"e":"Valorização do sistema abafado — diálogo entre saber tradicional e avaliação agronômica","c":"Emerson Dalla Chieza","f":"sistema abafado; saberes tradicionais; feijão","g":"Avaliar agronomicamente o sistema abafado — prática tradicional da agricultura familiar maranhense — sob tratamentos de adubação verde.","h":"A pesquisa parte do conhecimento local e o submete a avaliação sistemática, em vez de substituí-lo por pacote técnico externo, exemplificando a coprodução de conhecimento com atores não acadêmicos valorizada pela Área. ODS 2 [metas: PREENCHER]. Evidências: [PREENCHER].","i":"Médio Mearim [CONFERIR]","j":"Famílias agricultoras praticantes do sistema abafado","k":"[PREENCHER]","l":"Metodologia aplicável a outras práticas tradicionais (quintais, roças de babaçual).","nlinks":"","o":"Artigo originado: Agri-Environmental Sciences (DOI 10.36725/agries.v11i2.10824). Links: [PREENCHER]"}],"Hayla Nunes da Conceição":[{"n":1,"revisar":true,"imp":["ciencia","sociedade"],"dims":["Social"],"nat":["ptt"],"e":"Protocolos e evidências para atenção a populações vulneráveis (idosos e mulheres) nos serviços de saúde","c":"Hayla Nunes da Conceição","f":"violência; protocolos clínicos; sustentabilidade social","g":"Sistematizar evidências e protocolos para a atenção a idosos e mulheres em situação de violência, subsidiando serviços de saúde do Maranhão.","h":"As revisões conduzidas pela docente (protocolos para idosos vítimas de violência; atuação da APS frente à violência contra a mulher) constituem sínteses aplicáveis à qualificação das redes municipais de saúde — dimensão social da sustentabilidade na Linha 3. ODS 3, 5 e 16 [metas: PREENCHER]. Evidências de uso pelos serviços: [PREENCHER].","i":"Maranhão (Baixada/Pinheiro) [CONFERIR]","j":"Profissionais da APS; gestores municipais de saúde","k":"FUNADESP (projeto em execução) [CONFERIR objeto]","l":"Aplicável aos municípios do Médio Mearim via dissertações da L3.","nlinks":"","o":"Artigos originados: Rev. Enfermagem Atual In Derme (DOI 10.31011/reaid-2023-v.97-n.(esp)-art.1625); Rev. Baiana Enfermagem (DOI 10.18471/rbe.v36.37854). Links: [PREENCHER]"},{"n":2,"revisar":true,"imp":[],"dims":["Social","Ambiental"],"nat":["ptt","extensao"],"e":"[DEFINIR COM A DOCENTE] Educação em saúde e análise espacial de determinantes socioambientais no CCPi","c":"Hayla Nunes da Conceição","f":"saúde ambiental; geoprocessamento; educação em saúde","g":"[PREENCHER — sugestão: ações de educação em saúde e mapeamento de determinantes socioambientais (SIG) com estudantes do Campus Pinheiro.]","h":"[PREENCHER — a experiência precisa ser definida e comprovada pela docente; a competência em estudos ecológicos e SIG consta da ficha de produção (Epidemiologia e Serviços de Saúde, 2022) e conecta ODS 3 e 11. Evidências: PREENCHER.]","i":"[PREENCHER]","j":"[PREENCHER]","k":"[PREENCHER]","l":"Integrável ao diagnóstico-base do Plano de Impacto Social (Seção 6.3.3).","nlinks":"","o":"Artigo correlato: Epidemiologia e Serviços de Saúde (DOI 10.1590/S2237-96222022000200007). Links: [PREENCHER]"}]}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  var DRAFTS = {};
+  try { DRAFTS = JSON.parse(document.getElementById('drafts').textContent) || {}; } catch(e){ DRAFTS = {}; }
+  function draftOf(doc, n){
+    var arr = DRAFTS[doc] || [];
+    for(var i=0;i<arr.length;i++){ if(arr[i].n === n) return JSON.parse(JSON.stringify(arr[i])); }
+    return null;
+  }
+
+  var DOCENTES = ["Aluisio José Fernandes Júnior","André Luiz Borba do Nascimento","Eduily Benvindo Vaz Freire",
+    "Elidio Armando Exposto Guarçoni","Emerson Dalla Chieza","Hawbertt Rocha Costa","Hayla Nunes da Conceição",
+    "Joel Félix Silva Diniz Filho","Juliana Rodrigues Rocha","Kerolayne de Melo Nogueira","Marcônio Martins Rodrigues",
+    "Michel Ricardo de Barros Chaves","Raysa Valéria Carvalho Saraiva"];
+
+  var ODS = ["1 Erradicação da pobreza","2 Fome zero e agricultura sustentável","3 Saúde e bem-estar",
+    "4 Educação de qualidade","5 Igualdade de gênero","6 Água potável e saneamento","7 Energia limpa e acessível",
+    "8 Trabalho decente e crescimento econômico","9 Indústria, inovação e infraestrutura","10 Redução das desigualdades",
+    "11 Cidades e comunidades sustentáveis","12 Consumo e produção responsáveis","13 Ação contra a mudança global do clima",
+    "14 Vida na água","15 Vida terrestre","16 Paz, justiça e instituições eficazes","17 Parcerias e meios de implementação",
+    "18 Agenda Brasileira"];
+
+  var FIELDS = [
+    {k:'a', lt:'(a)', nm:'Impacto',             kind:'set',  el:'c-imp'},
+    {k:'b', lt:'(b)', nm:'Dimensões',           kind:'set',  el:'c-dim'},
+    {k:'c', lt:'(c)', nm:'Docentes envolvidos', kind:'text', el:'v-c'},
+    {k:'d', lt:'(d)', nm:'Natureza',            kind:'set',  el:'c-nat'},
+    {k:'e', lt:'(e)', nm:'Título',              kind:'text', el:'v-e'},
+    {k:'f', lt:'(f)', nm:'Palavras-chave',      kind:'text', el:'v-f'},
+    {k:'g', lt:'(g)', nm:'Objetivo',            kind:'text', el:'v-g'},
+    {k:'h', lt:'(h)', nm:'Impactos e ODS',      kind:'text', el:'v-h'},
+    {k:'i', lt:'(i)', nm:'Local',               kind:'text', el:'v-i'},
+    {k:'j', lt:'(j)', nm:'Beneficiários',       kind:'text', el:'v-j'},
+    {k:'k', lt:'(k)', nm:'Financiamentos',      kind:'text', el:'v-k'},
+    {k:'l', lt:'(l)', nm:'Replicabilidade',     kind:'text', el:'v-l'},
+    {k:'n', lt:'(n)', nm:'Comprovantes',        kind:'text', el:'v-n'},
+    {k:'o', lt:'(o)', nm:'Produtos originados', kind:'text', el:'v-o'}
+  ];
+
+  /* ---------- dicas, notas do modelo e exemplos ---------- */
+  var AIDS = {
+    a:{ dica:['Marque <b>Ciência</b> quando a experiência gerou conhecimento novo, método, coleção ou dado que a comunidade científica passa a usar. Marque <b>Sociedade</b> quando alguém fora da universidade mudou de situação por causa dela — comunidade, escola, cooperativa, órgão público.','As duas juntas são comuns e não são um problema: um herbário gera dado científico e forma coletores locais.'],
+        nota:['<b>Nota 1 do modelo:</b> impacto real corresponde a transformação positiva e verificável, apoiada em evidências, resultante de ações intencionais voltadas à Sociedade e ao Meio Ambiente.'],
+        ex:'Impacto na Ciência ( X ) e/ou na Sociedade ( X )\n\nJustificativa mental: o inventário publicou dados inéditos de flora (Ciência) e formou estudantes e agentes ambientais do município na identificação das espécies (Sociedade).' },
+    b:{ dica:['Dimensão é o <b>efeito predominante</b>, não o tema da pesquisa. Um trabalho sobre plantas pode ter dimensão Social se o que mudou foi a renda de quem coleta.','Duas ou três marcações costumam bastar. Marcar as cinco enfraquece a ficha.','<b>Institucional</b> vale quando a experiência criou ou fortaleceu uma estrutura — coleção, laboratório, comissão, política interna. <b>Complementar</b> cobre o que não coube nas outras: cultural, educacional, científica.'],
+        nota:['<b>Nota 2 do modelo:</b> o impacto real pode transcender uma agenda de desenvolvimento como a Agenda 2030. Referência sugerida pelo modelo: doi 10.11606/9786587773780.'],
+        ex:'Social ( X ) e/ou Ambiental ( X ) e/ou Econômico (  ) e/ou Institucional ( X ) e/ou Complementar (  )' },
+    c:{ dica:['Nome completo, como aparece no Lattes. Inclua os colegas do PPGATS que participaram da mesma experiência — a ficha admite mais de um docente permanente.','Parceiros externos, discentes e técnicos não entram aqui: eles aparecem no campo (h), nas parcerias.'],
+        ex:'Aluisio José Fernandes Júnior; Elidio Armando Exposto Guarçoni' },
+    d:{ dica:['A natureza é da <b>experiência</b>, não da publicação que saiu dela. Um artigo, sozinho, não é destaque — ele entra no campo (o), como produto originado.','Coleção científica, software, protocolo, guia de identificação, material didático, base de dados e diagnóstico técnico são <b>produto técnico e tecnológico</b>. Curso, feira, museu, mutirão, formação de professores e devolutiva comunitária são <b>projeto de extensão</b>.','Pode marcar duas quando a experiência tem as duas faces: um museu de ciências é estrutura (produto) e programação com escolas (extensão).'],
+        ex:'Produto técnico e tecnológico ( X );  Livro ou capítulo (  );  Projeto de extensão ( X )' },
+    e:{ dica:['Nomeie a experiência, não o artigo. Um bom título diz <b>o que é</b> e <b>onde</b>: “Herbário GRAU — criação e curadoria da coleção botânica do sul do Maranhão” funciona; “Estudos taxonômicos em Malvaceae” não.','Evite título só com o nome do projeto financiado, sem dizer o que ele produziu.'],
+        ex:'Museu Game Ciência — curadoria de espaço não formal de divulgação científica com jogos digitais' },
+    f:{ dica:['Exatamente três, separadas por ponto e vírgula. Use os termos pelos quais um avaliador procuraria a experiência.','Não repita palavras do título inteiro; escolha o objeto, o método e o território ou público.'],
+        ex:'silagem; resíduos agroindustriais; pecuária familiar' },
+    g:{ dica:['Duas ou três linhas, começando com um verbo no infinitivo: converter, criar, formar, reduzir, documentar, disponibilizar.','O modelo pede que o objetivo <b>identifique o foco principal</b>: escolha um, não liste cinco.'],
+        ex:'Converter resíduos agroindustriais — restolho de abacaxi, bagaço de cana e haste de mandioca — em alimento animal de qualidade, reduzindo o descarte e o custo de produção da pecuária familiar do Médio Mearim.' },
+    h:{ dica:['É o campo decisivo. Responda, nesta ordem: <b>o que mudou</b>, <b>para quem</b>, <b>com quem</b> (parcerias), <b>como se liga ao ensino, à pesquisa &amp; inovação e à extensão</b>, e <b>como isso se comprova</b>.','Prefira o verificável ao adjetivo. Em vez de “grande impacto na comunidade”, escreva “quarenta agricultores de três comunidades adotaram a prática, registrado nas listas de presença e no relatório final”.','Cite os ODS e as metas que você marcou acima — o formulário acrescenta essa frase ao final do campo no PDF.'],
+        nota:['<b>Nota 4 do modelo:</b> não se pede que se comprove matematicamente quanto uma ação impulsionou o indicador, mas que se demonstre com evidências o impacto ocasionado.','<b>Nota 5 do modelo (exemplo oficial):</b> aprimorar métodos de transformação da pele de peixes em couro, e aplicar cursos de capacitação, artesanato e outras ações focadas na geração de trabalho e renda para as mulheres de comunidades tradicionais.','<b>Nota 3 do modelo:</b> as metas dos 17 ODS constam da Agenda 2030 (brasil.un.org). Ainda não há metas para o ODS 18 da Agenda Brasileira, nem para as propostas dos ODS 19 e 20.'],
+        ex:'Fundado em fevereiro de 2022, o Herbário GRAU tornou-se a coleção botânica de referência do sul do Maranhão, região que não dispunha de acervo capaz de documentar a flora da transição Cerrado-Amazônia-Cocais. Em quatro anos, a coleção passou a receber o material-testemunho dos projetos regionais e a atender solicitações de identificação de órgãos ambientais e de consultorias de licenciamento do município.\n\nO impacto formativo é verificável na graduação: estudantes de Ciências Naturais participam das expedições e do processamento do acervo, e três monografias e uma dissertação usaram o material depositado. A curadoria integra a rede da Flora e Funga do Brasil (JBRJ) e opera em parceria com o Herbário Maranhão Continental (BMA/CCBa), o que conecta os dados locais à infraestrutura nacional de biodiversidade.\n\nA sinergia entre ensino, pesquisa e extensão se dá em três frentes: as coletas alimentam a disciplina de Botânica de Campo; o acervo sustenta os inventários da Linha 1; e as visitas orientadas de escolas ao herbário levam o tema da flora regional à educação básica.\n\nEvidências documentais: portaria de criação do herbário, registro no Index Herbariorum, planilha de tombamento com o número de exsicatas, ofícios de resposta a solicitações de identificação e relatórios dos projetos vinculados.' },
+    i:{ dica:['Seja específico: município e estado, nome da comunidade, do assentamento, da escola, da unidade de conservação ou do campus.','Se a experiência é distribuída, diga a abrangência — “sete municípios do Território do Médio Mearim” — em vez de “Maranhão”.'],
+        ex:'Município de Grajaú (MA), com coletas na bacia do rio Grajaú e nas comunidades do entorno' },
+    j:{ dica:['Diga quem se beneficiou e, quando possível, quantos. Beneficiário não é o pesquisador nem a universidade.','O modelo lembra que os beneficiários costumam estar nas esferas do Estado ou Governo, das empresas, das instituições de educação e ciência e da sociedade civil organizada.'],
+        nota:['<b>Nota 6 do modelo:</b> normalmente estabelecidos com as esferas do Estado ou Governo, Empresas, Instituições de Educação e Ciência, e Sociedade Civil organizada.'],
+        ex:'Estudantes e professores da licenciatura em Ciências Naturais do CCGR; escolas públicas de Grajaú atendidas em visitas orientadas; Secretaria Municipal de Meio Ambiente e consultorias de licenciamento que solicitam identificações' },
+    k:{ dica:['Agência, edital, número do processo e vigência. É o que permite ao avaliador conferir.','Se a experiência não teve financiamento externo, escreva “Sem financiamento externo” e, se houver, cite o apoio institucional — bolsas PIBIC, diárias, contrapartida do campus.'],
+        ex:'FAPEMA — Edital 13/2019, processo nº [número], 2020–2023; bolsas PIBIC/UFMA (2021–2024). Apoio institucional do CCGR com espaço físico e transporte para as expedições.' },
+    l:{ dica:['Diga onde mais aquilo caberia e o que tornaria a repetição possível — o protocolo, o material didático, a metodologia, a parceria.','O modelo dá como exemplo de potencial ampliar para outros locais e municípios.'],
+        nota:['<b>Nota 7 do modelo:</b> a exemplo de potencial, poderia ser ampliar para outros locais, municípios…'],
+        ex:'O modelo de curadoria e o protocolo de expedições podem ser replicados nos campi de Codó e Pinheiro, formando uma rede estadual de coleções do interior; o roteiro de visitas orientadas já está descrito e pode ser adotado por qualquer herbário universitário.' },
+    n:{ dica:['Um link por linha, aberto ao público sempre que possível. Se o documento não estiver na internet, descreva o comprovante e diga onde está arquivado — a Área aceita, mas quer saber que ele existe.','São bons comprovantes: portaria, ata, relatório de projeto, termo de anuência da comunidade, lista de presença, ofício de devolutiva, registro fotográfico datado, página do projeto.'],
+        ex:'Portaria de criação do Herbário GRAU: [link]\nRegistro no Index Herbariorum: [link]\nRelatório final do projeto na agência: [link ou local de arquivo]\nOfícios de atendimento a solicitações de identificação: arquivo da direção do CCGR' },
+    o:{ dica:['Aqui entram os produtos que <b>nasceram</b> da experiência: artigos com DOI, capítulos, guias, softwares, materiais didáticos, matérias de divulgação.','É o lugar do artigo científico. Use o DOI completo.'],
+        ex:'Artigo: CARDOSO, J. M.; FERNANDES-JÚNIOR, A. J.; GIL, A. S. B. Triumfetta decaglandulata… Phytotaxa, 545(3), 2022. https://doi.org/10.11646/phytotaxa.545.3.4\nMonografias de Malvaceae na Flora e Funga do Brasil (JBRJ): [link]\nGuia fotográfico de identificação: [link]' }
+  };
+
+  var ROTEIRO_H = 'O que mudou: \n\nPara quem: \n\nParcerias estabelecidas: \n\nSinergia entre ensino, pesquisa & inovação e extensão: \n\nODS e metas atendidas: \n\nEvidências documentais: ';
+
+  var $ = function(id){ return document.getElementById(id); };
+  var state = { docente:'', n:1 };
+
+  /* ---------- montagem ---------- */
+  var sel = $('docente');
+  sel.appendChild(new Option('— escolha o seu nome —',''));
+  DOCENTES.forEach(function(d){ sel.appendChild(new Option(d, d)); });
+
+  var odsBox = $('c-ods');
+  ODS.forEach(function(o){
+    var lb = document.createElement('label'); lb.className = 'choice';
+    var ip = document.createElement('input'); ip.type='checkbox'; ip.value=o;
+    var sp = document.createElement('span'); sp.textContent = 'ODS ' + o.split(' ')[0]; sp.title = o;
+    lb.appendChild(ip); lb.appendChild(sp); odsBox.appendChild(lb);
+  });
+
+  var railBox = $('rail');
+  FIELDS.forEach(function(f){
+    var li = document.createElement('li');
+    var b = document.createElement('button'); b.type = 'button';
+    b.innerHTML = '<span class="dot" data-dot="'+f.k+'"></span><span class="lt">'+f.lt+'</span><span class="nm"></span>';
+    b.querySelector('.nm').textContent = f.nm;
+    b.addEventListener('click', function(){ var t = $('f-'+f.k); if(t) t.scrollIntoView({behavior:'smooth', block:'center'}); });
+    li.appendChild(b); railBox.appendChild(li);
+  });
+
+  // dicas / notas / exemplos em cada campo
+  Object.keys(AIDS).forEach(function(k){
+    var host = $('f-'+k); if(!host) return;
+    var wrap = document.createElement('div'); wrap.className = 'aids';
+    var A = AIDS[k];
+
+    if(A.dica){
+      var d1 = document.createElement('details'); d1.className = 'aid';
+      d1.innerHTML = '<summary>Como preencher</summary><div class="body">' + A.dica.map(function(p){ return '<p>'+p+'</p>'; }).join('') + '</div>';
+      wrap.appendChild(d1);
+    }
+    if(A.nota){
+      var d2 = document.createElement('details'); d2.className = 'aid';
+      d2.innerHTML = '<summary>Notas do modelo oficial</summary><div class="body">' + A.nota.map(function(p){ return '<p>'+p+'</p>'; }).join('') + '</div>';
+      wrap.appendChild(d2);
+    }
+    if(A.ex){
+      var d3 = document.createElement('details'); d3.className = 'aid ex';
+      var box = document.createElement('div'); box.className = 'ex-box';
+      var tag = document.createElement('span'); tag.className = 'ex-tag'; tag.textContent = 'Exemplo — não copie, adapte à sua experiência';
+      box.appendChild(tag); box.appendChild(document.createTextNode(A.ex));
+      var sum = document.createElement('summary'); sum.textContent = 'Ver exemplo preenchido';
+      d3.appendChild(sum); d3.appendChild(box);
+      if(k === 'h'){
+        var bt = document.createElement('button');
+        bt.type = 'button'; bt.className = 'mini'; bt.textContent = 'Inserir roteiro no campo vazio';
+        bt.addEventListener('click', function(){
+          var ta = $('v-h');
+          if(ta.value.trim()){ toast('O campo (h) já tem texto — o roteiro não foi inserido.'); return; }
+          ta.value = ROTEIRO_H; save(); refresh(); ta.focus();
+        });
+        d3.appendChild(bt);
+      }
+      wrap.appendChild(d3);
+    }
+    host.appendChild(wrap);
+  });
+
+  /* ---------- leitura / escrita ---------- */
+  function setChecks(id, values){
+    var box = $(id); if(!box) return; var vals = values || [];
+    Array.prototype.forEach.call(box.querySelectorAll('input'), function(ip){ ip.checked = vals.indexOf(ip.value) !== -1; });
+  }
+  function getChecks(id){
+    var box = $(id); if(!box) return [];
+    return Array.prototype.filter.call(box.querySelectorAll('input'), function(i){ return i.checked; }).map(function(i){ return i.value; });
+  }
+  function readForm(){
+    return { docente:state.docente, n:state.n,
+      imp:getChecks('c-imp'), dims:getChecks('c-dim'), nat:getChecks('c-nat'),
+      ods:getChecks('c-ods'), metas:$('v-metas').value.trim(),
+      c:$('v-c').value.trim(), e:$('v-e').value.trim(), f:$('v-f').value.trim(),
+      g:$('v-g').value.trim(), h:$('v-h').value.trim(), i:$('v-i').value.trim(),
+      j:$('v-j').value.trim(), k:$('v-k').value.trim(), l:$('v-l').value.trim(),
+      nlinks:$('v-n').value.trim(), o:$('v-o').value.trim() };
+  }
+  function writeForm(d){
+    d = d || {};
+    setChecks('c-imp', d.imp); setChecks('c-dim', d.dims); setChecks('c-nat', d.nat); setChecks('c-ods', d.ods);
+    $('v-metas').value = d.metas || '';
+    ['c','e','f','g','h','i','j','k','l','o'].forEach(function(key){ var el = $('v-'+key); if(el) el.value = d[key] || ''; });
+    $('v-n').value = d.nlinks || '';
+    refresh();
+  }
+
+  /* ---------- persistência ---------- */
+  function key(doc, n){ return 'ficha:' + doc + ':' + n; }
+  function save(){
+    if(!state.docente) return;
+    try { localStorage.setItem(key(state.docente, state.n), JSON.stringify(readForm())); } catch(e){}
+  }
+  // lê do armazenamento/rascunho, nunca do formulário aberto
+  function storedFicha(doc, n){
+    var saved = null;
+    try { saved = JSON.parse(localStorage.getItem(key(doc, n)) || 'null'); } catch(e){ saved = null; }
+    if(saved) return saved;
+    return { docente:doc, n:n, imp:[], dims:[], nat:[], ods:[], metas:'', c:doc, e:'', f:'', g:'', h:'', i:'', j:'', k:'', l:'', nlinks:'', o:'' };
+  }
+  // versão exibida no painel: a do formulário quando é a produção aberta
+  function fichaOf(doc, n){
+    if(doc === state.docente && n === state.n) return readForm();
+    return storedFicha(doc, n);
+  }
+  function load(){
+    if(!state.docente){ writeForm({}); return; }
+    var d = storedFicha(state.docente, state.n);
+    d.docente = state.docente; d.n = state.n;
+    writeForm(d);
+  }
+
+  /* ---------- validação ---------- */
+  var PENDING_RE = /\[(PREENCHER|CONFERIR|DEFINIR[^\]]*)\]/i;
+  function fieldState(f, d){
+    var v;
+    if(f.kind === 'set'){
+      v = f.k === 'a' ? d.imp : (f.k === 'b' ? d.dims : d.nat);
+      return (v && v.length) ? 'ok' : 'empty';
+    }
+    v = f.k === 'n' ? d.nlinks : d[f.k];
+    if(!v) return 'empty';
+    if(PENDING_RE.test(v)) return 'warn';
+    if(f.k === 'f' && String(v).split(';').filter(function(s){ return s.trim(); }).length !== 3) return 'warn';
+    return 'ok';
+  }
+  function score(d){
+    var ok = 0;
+    FIELDS.forEach(function(f){ if(fieldState(f, d) === 'ok') ok++; });
+    return ok;
+  }
+
+  /* ---------- painel das duas produções ---------- */
+  function renderDuo(){
+    var box = $('duo'); box.innerHTML = '';
+    [1,2].forEach(function(n){
+      var d = state.docente ? fichaOf(state.docente, n) : {imp:[],dims:[],nat:[],e:''};
+      var s = state.docente ? score(d) : 0;
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'duo-item';
+      b.setAttribute('aria-current', String(n === state.n));
+      var titulo = (d.e || '').trim();
+      b.innerHTML =
+        '<div class="duo-top"><span class="duo-n">Produção ' + n + '</span><span class="duo-score">' + (state.docente ? s + '/14' : '—') + '</span></div>' +
+        '<div class="duo-title' + (titulo ? '' : ' empty') + '"></div>' +
+        '<div class="duo-track"><div class="duo-fill' + (s === FIELDS.length ? ' full' : '') + '" style="width:' + (s / FIELDS.length * 100) + '%"></div></div>' +
+        '<span class="duo-edit">' + (n === state.n ? 'Em edição' : 'Editar esta') + '</span>';
+      b.querySelector('.duo-title').textContent = titulo || (state.docente ? 'Sem título — clique para preencher' : 'Escolha o seu nome acima');
+      b.addEventListener('click', function(){
+        if(n === state.n) return;
+        save(); state.n = n; load(); renderDuo(); renderSugestao();
+        if(!$('panelEdit').hidden){ var t = $('f-a'); if(t) t.scrollIntoView({behavior:'smooth', block:'start'}); }
+      });
+      box.appendChild(b);
+    });
+  }
+
+  function refresh(){
+    var d = readForm();
+    var ok = 0, pend = [];
+    FIELDS.forEach(function(f){
+      var st = fieldState(f, d);
+      var dot = document.querySelector('[data-dot="'+f.k+'"]');
+      if(dot) dot.className = 'dot' + (st === 'ok' ? ' ok' : (st === 'warn' ? ' warn' : ''));
+      if(st === 'ok') ok++; else pend.push({lt:f.lt, nm:f.nm, st:st});
+    });
+    $('meterLabel').textContent = state.docente ? ('Produção ' + state.n + ' de 2') : 'Ficha aberta';
+    $('meterVal').textContent = ok + '/' + FIELDS.length;
+    $('meterFill').style.width = (ok / FIELDS.length * 100) + '%';
+    $('meterFill').style.background = ok === FIELDS.length ? 'var(--moss)' : 'var(--violet)';
+
+    var box = $('pendBox');
+    if(!state.docente){
+      box.innerHTML = '<b>Escolha o seu nome</b> na seção 01 para carregar as suas duas produções.';
+    } else if(!pend.length){
+      box.innerHTML = '<b style="color:var(--moss)">Produção ' + state.n + ' completa.</b> Confira a outra produção no painel da seção 01 antes de gerar o PDF.';
+    } else {
+      var html = '<b>Falta resolver ' + pend.length + ' ' + (pend.length === 1 ? 'campo' : 'campos') + ' nesta produção:</b><ul>';
+      pend.forEach(function(p){ html += '<li>' + p.lt + ' ' + p.nm + ' — ' + (p.st === 'empty' ? 'vazio' : 'contém marcação a resolver') + '</li>'; });
+      box.innerHTML = html + '</ul>';
+    }
+    var kw = $('v-f').value.split(';').filter(function(s){ return s.trim(); }).length;
+    var cf = $('cnt-f'); cf.textContent = kw + ' de 3 palavras-chave'; cf.className = 'counter' + (kw === 3 ? '' : ' warn');
+    $('cnt-g').textContent = $('v-g').value.trim().length + ' caracteres';
+    $('cnt-h').textContent = $('v-h').value.trim().length + ' caracteres';
+  }
+
+  /* ---------- eventos ---------- */
+  var t;
+  document.addEventListener('input', function(ev){
+    if(ev.target.id === 'docente') return;
+    refresh(); clearTimeout(t); t = setTimeout(function(){ save(); renderDuo(); }, 350);
+  });
+  document.addEventListener('change', function(ev){
+    if(ev.target.type === 'checkbox'){ refresh(); save(); renderDuo(); }
+  });
+  sel.addEventListener('change', function(){
+    save();
+    state.docente = sel.value; state.n = 1;
+    load(); renderDuo(); renderSugestao();
+  });
+
+  var toastT;
+  function toast(msg){
+    var el = $('toast'); el.textContent = msg; el.hidden = false;
+    clearTimeout(toastT); toastT = setTimeout(function(){ el.hidden = true; }, 4600);
+  }
+
+  /* ---------- PDF ---------- */
+  var CP = {'≥':'>=','≤':'<=','→':'->','–':'-','—':'--','•':'-','…':'...','“':'"','”':'"','‘':"'",'’':"'",'×':'x','₃':'3','₂':'2','&':'e'};
+  function clean(s){ return String(s == null ? '' : s).replace(/[≥≤→–—•…“”‘’×₃₂]/g, function(m){ return CP[m] || ''; }); }
+  function mark(on){ return on ? '( X )' : '(    )'; }
+
+  function renderFicha(doc, d, first){
+    var M = 18, W = 210 - M*2, BOT = 274;
+    if(!first) doc.addPage();
+    var y = M;
+    function br(need){ if(y + (need||6) > BOT){ doc.addPage(); y = M; } }
+    function para(txt, size){
+      doc.setFont('helvetica','normal'); doc.setFontSize(size || 9.5); doc.setTextColor(20);
+      var lines = doc.splitTextToSize(clean(txt), W);
+      for(var i=0;i<lines.length;i++){ br(5); doc.text(lines[i], M, y); y += 4.5; }
+    }
+    function field(letter, label, value){
+      br(13); y += 2.6;
+      doc.setDrawColor(212); doc.setLineWidth(0.15); doc.line(M, y - 1.4, M + W, y - 1.4); y += 2.2;
+      doc.setFont('helvetica','bold'); doc.setFontSize(9); doc.setTextColor(60,48,120);
+      var hl = doc.splitTextToSize(clean(letter + ' ' + label), W);
+      for(var i=0;i<hl.length;i++){ br(5); doc.text(hl[i], M, y); y += 4.2; }
+      y += 0.6;
+      para(value && String(value).trim() ? value : '[não informado]');
+    }
+
+    doc.setFont('helvetica','bold'); doc.setFontSize(13); doc.setTextColor(35,28,80);
+    doc.text('DESTAQUE de IMPACTO REAL', 105, y, {align:'center'}); y += 5.6;
+    doc.setFontSize(10);
+    doc.text('do(a)s Professore(a)s declarado(a)s como Docentes Permanentes (DP)', 105, y, {align:'center'}); y += 6;
+    doc.setDrawColor(90,72,160); doc.setLineWidth(0.5); doc.line(M, y, M + W, y); y += 5.5;
+
+    doc.setFont('helvetica','normal'); doc.setFontSize(8.2); doc.setTextColor(90);
+    doc.text('Programa de Pós-Graduação em Ambiente, Tecnologia e Sociedade - PPGATS/UFMA', 105, y, {align:'center'}); y += 3.8;
+    doc.text('Anexo 1 do Documento Orientador de APCN - Área 49, Ciências Ambientais (CAPES, 2026)', 105, y, {align:'center'}); y += 3.8;
+    doc.text(clean('Produção de destaque ' + d.n + ' de 2  -  ' + (d.docente || d.c || 'docente não identificado')), 105, y, {align:'center'});
+    y += 6;
+    doc.setFontSize(7.6); doc.setTextColor(120);
+    var n1 = doc.splitTextToSize(clean('Nota 1: Impacto real corresponde a transformação positiva e verificável, apoiada em evidências, resultante de ações intencionais voltadas à Sociedade e ao Meio Ambiente.'), W);
+    for(var q=0;q<n1.length;q++){ doc.text(n1[q], M, y); y += 3.2; }
+    y += 1.5;
+
+    var imp = d.imp || [], dims = d.dims || [], nat = d.nat || [];
+    field('(a)', 'Impacto', 'na Ciência ' + mark(imp.indexOf('ciencia') !== -1) + ' e/ou na Sociedade ' + mark(imp.indexOf('sociedade') !== -1));
+    field('(b)', 'Dimensões predominante(s) de Impacto:', ['Social','Ambiental','Econômico','Institucional','Complementar'].map(function(x){ return x + ' ' + mark(dims.indexOf(x) !== -1); }).join('  e/ou  '));
+    field('(c)', 'DP(s) envolvido(a)(s) na experiência do Destaque:', d.c);
+    field('(d)', 'Natureza do Destaque:', 'Produto técnico e tecnológico ' + mark(nat.indexOf('ptt') !== -1) + ';  Livro ou capítulo ' + mark(nat.indexOf('livro') !== -1) + ';  Projeto de extensão ' + mark(nat.indexOf('extensao') !== -1));
+    field('(e)', 'Título da experiência do Destaque:', d.e);
+    field('(f)', 'Palavras-chave:', d.f);
+    field('(g)', 'Objetivo da experiência, identificando seu principal foco:', d.g);
+    var h = d.h || '';
+    if(d.ods && d.ods.length){
+      h += '\n\nODS mobilizados: ' + d.ods.map(function(o){ var p = String(o).split(' '); return 'ODS ' + p.shift() + ' (' + p.join(' ') + ')'; }).join('; ') + '.';
+      if(d.metas) h += ' Metas declaradas: ' + d.metas + '.';
+    }
+    field('(h)', 'Descrição breve dos Impactos do Destaque, ações intencionais para o atendimento dos ODS e suas metas, parcerias estabelecidas e sinergias entre as atividades de ensino, pesquisa e inovação e extensão, bem como evidências documentais:', h);
+    field('(i)', 'Local onde foi ou é aplicada a experiência do Destaque:', d.i);
+    field('(j)', 'Beneficiário(a)s dos Impactos do Destaque:', d.j);
+    field('(k)', 'Financiamentos obtidos pela experiência do Destaque:', d.k);
+    field('(l)', 'Potencial de replicabilidade do Destaque de Impacto:', d.l);
+    field('(n)', 'Links de documentos comprobatórios do Destaque:', d.nlinks);
+    field('(o)', 'Links de produtos técnicos e tecnológicos, iniciativas de popularização da ciência, livros e capítulos ou artigos originados do Destaque:', d.o);
+  }
+
+  function stamp(doc){
+    var total = doc.internal.getNumberOfPages();
+    var hoje = new Date().toLocaleDateString('pt-BR');
+    for(var p=1; p<=total; p++){
+      doc.setPage(p);
+      doc.setFont('helvetica','normal'); doc.setFontSize(7.5); doc.setTextColor(140);
+      doc.text(clean('Ficha de Destaque de Impacto Real - PPGATS/UFMA - emitida em ' + hoje), 18, 288);
+      doc.text(p + '/' + total, 192, 288, {align:'right'});
+    }
+  }
+  function newDoc(){
+    var jsPDF = window.jspdf && window.jspdf.jsPDF;
+    if(!jsPDF) throw new Error('lib');
+    return new jsPDF({unit:'mm', format:'a4'});
+  }
+  function sobrenome(nome){
+    var parts = String(nome || 'docente').split(' ').filter(Boolean);
+    return (parts.length > 1 ? parts[parts.length-1] : parts[0] || 'docente')
+      .normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^A-Za-z0-9]/g,'');
+  }
+
+  async function offer(filename, data, okMsg){
+    var dl = null;
+    try { dl = (window.claude && window.claude.use) ? await window.claude.use('downloads') : null; } catch(e){ dl = null; }
+    if(dl){
+      try { await dl.save({filename:filename, data:data}); toast(okMsg); }
+      catch(err){
+        var code = err && err.code;
+        if(code === 'declined') toast('Download cancelado.');
+        else if(code === 'rate_limited') toast('Já há um download aguardando. Tente de novo em instantes.');
+        else if(code === 'too_large') toast('Arquivo grande demais para salvar aqui.');
+        else toast('Não foi possível salvar o arquivo nesta visualização.');
+      }
+      return true;
+    }
+    return false;
+  }
+
+  async function gerar(ambas){
+    if(!state.docente){ toast('Escolha o seu nome na seção 01 antes de gerar a ficha.'); return; }
+    save();
+    var btn = ambas ? $('btnPdf2') : $('btnPdf1');
+    btn.disabled = true;
+    try{
+      var doc = newDoc(), nome;
+      if(ambas){
+        var d1 = storedFicha(state.docente, 1), d2 = storedFicha(state.docente, 2);
+        d1.docente = state.docente; d1.n = 1; d2.docente = state.docente; d2.n = 2;
+        renderFicha(doc, d1, true);
+        renderFicha(doc, d2, false);
+        nome = 'Fichas_Impacto_Real_' + sobrenome(state.docente) + '.pdf';
+        var falta = (FIELDS.length - score(d1)) + (FIELDS.length - score(d2));
+        if(falta) toast('PDF gerado com ' + falta + ' campo(s) ainda por resolver nas duas produções.');
+      } else {
+        var d = readForm(); d.docente = state.docente;
+        renderFicha(doc, d, true);
+        nome = 'Ficha_Impacto_Real_' + sobrenome(state.docente) + '_Producao' + state.n + '.pdf';
+      }
+      stamp(doc);
+      var saved = await offer(nome, doc.output('blob'), ambas ? 'As duas fichas foram geradas. Confirme o download.' : 'Ficha gerada. Confirme o download.');
+      if(!saved){ doc.save(nome); toast('Arquivo gerado.'); }
+    }catch(e){
+      toast('Não foi possível gerar o PDF. Recarregue a página e tente novamente.');
+    }finally{ btn.disabled = false; }
+  }
+  $('btnPdf1').addEventListener('click', function(){ gerar(false); });
+  $('btnPdf2').addEventListener('click', function(){ gerar(true); });
+
+  $('btnExport').addEventListener('click', async function(){
+    if(!state.docente){ toast('Escolha o seu nome antes de exportar.'); return; }
+    save();
+    var pacote = { docente:state.docente, producoes:[storedFicha(state.docente,1), storedFicha(state.docente,2)] };
+    var json = JSON.stringify(pacote, null, 2);
+    var nome = 'Rascunho_Impacto_Real_' + sobrenome(state.docente) + '.json';
+    var saved = await offer(nome, json, 'Rascunho das duas produções exportado.');
+    if(!saved){
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([json], {type:'application/json'}));
+      a.download = nome; a.click(); URL.revokeObjectURL(a.href);
+      toast('Rascunho exportado.');
+    }
+  });
+
+  $('btnImport').addEventListener('click', function(){ $('importFile').click(); });
+  $('importFile').addEventListener('change', function(){
+    var file = this.files && this.files[0]; if(!file) return;
+    var r = new FileReader();
+    r.onload = function(){
+      try{
+        var p = JSON.parse(r.result);
+        var lista = p.producoes ? p.producoes : [p];
+        var doc = p.docente || (lista[0] && lista[0].docente);
+        if(!doc || DOCENTES.indexOf(doc) === -1) throw new Error('docente');
+        state.docente = doc; sel.value = doc;
+        lista.forEach(function(d){
+          if(d && (d.n === 1 || d.n === 2)){
+            d.docente = doc;
+            try { localStorage.setItem(key(doc, d.n), JSON.stringify(d)); } catch(e){}
+          }
+        });
+        state.n = 1;
+        load(); renderDuo(); renderSugestao(); setTab('edit');
+        toast('Rascunho importado.');
+      }catch(e){ toast('Arquivo inválido: esperado um rascunho .json exportado por esta ficha.'); }
+    };
+    r.readAsText(file);
+    this.value = '';
+  });
+
+  /* ---------- ficha-exemplo (somente leitura) ---------- */
+  var EXEMPLO = [
+    ['(a)','Impacto','na Ciência ( X ) e/ou na Sociedade ( X )'],
+    ['(b)','Dimensões predominantes','Social (  ) e/ou Ambiental ( X ) e/ou Econômico (  ) e/ou Institucional ( X ) e/ou Complementar (  )'],
+    ['(c)','DP(s) envolvido(a)(s)','Nome completo do docente responsável pela experiência, como consta no Lattes'],
+    ['(d)','Natureza do destaque','Produto técnico e tecnológico ( X );  Livro ou capítulo (  );  Projeto de extensão ( X )'],
+    ['(e)','Título','Herbário GRAU — criação e curadoria da coleção botânica do sul do Maranhão'],
+    ['(f)','Palavras-chave','herbário; curadoria; flora do sul maranhense'],
+    ['(g)','Objetivo','Criar e consolidar a coleção botânica de referência da região de Grajaú, documentando a flora da transição Cerrado-Amazônia-Cocais e formando estudantes em coleta, herborização e identificação vegetal.'],
+    ['(h)','Descrição dos impactos','Fundado em fevereiro de 2022, o herbário tornou-se a coleção botânica de referência do sul do Maranhão, região que não dispunha de acervo capaz de documentar a flora da transição Cerrado-Amazônia-Cocais. Em quatro anos passou a receber o material-testemunho dos projetos regionais e a atender solicitações de identificação de órgãos ambientais e de consultorias de licenciamento do município.\n\nO impacto formativo é verificável na graduação: estudantes de Ciências Naturais participam das expedições e do processamento do acervo, e três monografias e uma dissertação usaram o material depositado. A curadoria integra a rede da Flora e Funga do Brasil (JBRJ) e opera em parceria com o Herbário Maranhão Continental (BMA/CCBa), o que conecta os dados locais à infraestrutura nacional de biodiversidade.\n\nA sinergia entre ensino, pesquisa e extensão se dá em três frentes: as coletas alimentam a disciplina de Botânica de Campo; o acervo sustenta os inventários da Linha 1; e as visitas orientadas de escolas levam o tema da flora regional à educação básica.\n\nEvidências documentais: portaria de criação, registro no Index Herbariorum, planilha de tombamento com o número de exsicatas, ofícios de resposta a solicitações de identificação e relatórios dos projetos vinculados.\n\nODS mobilizados: ODS 15 (Vida terrestre); ODS 4 (Educação de qualidade). Metas declaradas: 15.5; 4.7.'],
+    ['(i)','Local','Município de Grajaú (MA), com coletas na bacia do rio Grajaú e nas comunidades do entorno'],
+    ['(j)','Beneficiários','Estudantes e professores da licenciatura em Ciências Naturais; escolas públicas atendidas em visitas orientadas; Secretaria Municipal de Meio Ambiente e consultorias que solicitam identificações'],
+    ['(k)','Financiamentos','Agência, edital, número do processo e vigência; quando não houver, “Sem financiamento externo”, indicando o apoio institucional recebido'],
+    ['(l)','Replicabilidade','O modelo de curadoria e o protocolo de expedições podem ser replicados nos demais campi do interior, formando uma rede estadual de coleções; o roteiro de visitas orientadas já está descrito e pode ser adotado por qualquer herbário universitário.'],
+    ['(n)','Documentos comprobatórios','Portaria de criação: [link]\nRegistro no Index Herbariorum: [link]\nRelatório final do projeto: [link ou local de arquivo]'],
+    ['(o)','Produtos originados','Artigo com DOI originado da experiência; monografias publicadas na Flora e Funga do Brasil; guia fotográfico de identificação']
+  ];
+  var LABELS = {a:'Impacto', b:'Dimensões predominantes', c:'DP(s) envolvido(a)(s)', d:'Natureza do destaque',
+    e:'Título', f:'Palavras-chave', g:'Objetivo', h:'Descrição dos impactos', i:'Local', j:'Beneficiários',
+    k:'Financiamentos', l:'Replicabilidade', n:'Documentos comprobatórios', o:'Produtos originados'};
+
+  function fichaRows(d){
+    var imp = d.imp || [], dims = d.dims || [], nat = d.nat || [];
+    var h = d.h || '';
+    if(d.ods && d.ods.length){
+      h += '\n\nODS mobilizados: ' + d.ods.map(function(o){ var q = String(o).split(' '); return 'ODS ' + q.shift() + ' (' + q.join(' ') + ')'; }).join('; ') + '.';
+      if(d.metas) h += ' Metas declaradas: ' + d.metas + '.';
+    }
+    return [
+      ['(a)', LABELS.a, 'na Ciência ' + mark(imp.indexOf('ciencia') !== -1) + ' e/ou na Sociedade ' + mark(imp.indexOf('sociedade') !== -1)],
+      ['(b)', LABELS.b, ['Social','Ambiental','Econômico','Institucional','Complementar'].map(function(x){ return x + ' ' + mark(dims.indexOf(x) !== -1); }).join(' e/ou ')],
+      ['(c)', LABELS.c, d.c || '—'],
+      ['(d)', LABELS.d, 'Produto técnico e tecnológico ' + mark(nat.indexOf('ptt') !== -1) + ';  Livro ou capítulo ' + mark(nat.indexOf('livro') !== -1) + ';  Projeto de extensão ' + mark(nat.indexOf('extensao') !== -1)],
+      ['(e)', LABELS.e, d.e || '—'], ['(f)', LABELS.f, d.f || '—'], ['(g)', LABELS.g, d.g || '—'],
+      ['(h)', LABELS.h, h || '—'], ['(i)', LABELS.i, d.i || '—'], ['(j)', LABELS.j, d.j || '—'],
+      ['(k)', LABELS.k, d.k || '—'], ['(l)', LABELS.l, d.l || '—'],
+      ['(n)', LABELS.n, d.nlinks || '[a preencher — links dos comprovantes]'], ['(o)', LABELS.o, d.o || '—']
+    ];
+  }
+
+  var sugAtual = null; // rascunho mostrado na aba de sugestão
+  function renderSugestao(){
+    var box = $('exemploBox'); if(!box) return;
+    box.innerHTML = '';
+    var rows, dr = state.docente ? draftOf(state.docente, state.n) : null;
+    sugAtual = dr;
+    if(dr){
+      dr.docente = state.docente; dr.c = dr.c || state.docente;
+      rows = fichaRows(dr);
+      $('sugTitle').textContent = 'Sugestão para a Produção ' + state.n;
+      $('sugDesc').textContent = dr.revisar
+        ? 'Rascunho proposto a partir da análise do seu currículo Lattes e da proposta do Programa. Confirme se é esta a experiência que você quer destacar — ou preencha outra do zero. Os trechos entre colchetes dependem de informação que só você tem.'
+        : 'Rascunho preparado a partir do seu currículo Lattes e da proposta do Programa. Revise, complete os trechos entre colchetes e use como base — ou preencha outra experiência do zero.';
+      $('btnUsar').hidden = false;
+    } else {
+      rows = EXEMPLO;
+      $('sugTitle').textContent = state.docente ? ('Ficha-exemplo — Produção ' + state.n) : 'Ficha-exemplo completa';
+      $('sugDesc').textContent = state.docente
+        ? 'Não há sugestão preparada para esta produção. Este é um exemplo ilustrativo do nível de detalhe esperado; preencha a sua na aba ao lado.'
+        : 'Escolha o seu nome acima para ver a sugestão preparada para você. Enquanto isso, esta é uma ficha-exemplo, para mostrar o nível de detalhe que a Área espera nos catorze campos.';
+      $('btnUsar').hidden = true;
+    }
+    rows.forEach(function(r){
+      var row = document.createElement('div'); row.className = 'ex-row';
+      var lt = document.createElement('span'); lt.className = 'lt'; lt.textContent = r[0];
+      var val = document.createElement('div'); val.className = 'val';
+      var b = document.createElement('b'); b.textContent = r[1];
+      val.appendChild(b); val.appendChild(document.createTextNode(r[2]));
+      row.appendChild(lt); row.appendChild(val); box.appendChild(row);
+    });
+  }
+
+  /* ---------- abas ---------- */
+  function setTab(which){
+    var edit = which === 'edit';
+    $('panelEdit').hidden = !edit;
+    $('panelSug').hidden = edit;
+    $('tabEdit').setAttribute('aria-selected', String(edit));
+    $('tabSug').setAttribute('aria-selected', String(!edit));
+    var rail = document.querySelector('.rail'); if(rail) rail.style.visibility = edit ? '' : 'hidden';
+    $('tabHint').textContent = edit
+      ? 'Cada campo traz dica, notas do modelo e exemplo próprio.'
+      : 'Leia a sugestão e depois preencha na outra aba.';
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+  $('tabEdit').addEventListener('click', function(){ setTab('edit'); });
+  $('tabSug').addEventListener('click', function(){ setTab('sug'); });
+  $('btnGoEdit').addEventListener('click', function(){ setTab('edit'); });
+  $('btnUsar').addEventListener('click', function(){
+    if(!sugAtual){ toast('Escolha o seu nome para carregar a sugestão.'); return; }
+    var d = JSON.parse(JSON.stringify(sugAtual));
+    d.docente = state.docente; d.n = state.n; d.c = d.c || state.docente;
+    writeForm(d); save(); renderDuo(); setTab('edit');
+    toast('Sugestão carregada na Produção ' + state.n + '. Agora é só editar.');
+  });
+
+  /* ---------- estado inicial ---------- */
+  (function init(){
+    writeForm({});
+    renderDuo();
+    renderSugestao();
+    refresh();
+  })();
+})();
+</script>
