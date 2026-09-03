@@ -179,7 +179,9 @@ details.aid.ex summary{color:var(--moss)}
 .banner.warn{background:var(--amber-wash); color:var(--amber); border:1px solid var(--amber)}
 .banner button.x{margin-left:auto; background:none; border:0; color:inherit; cursor:pointer; font-size:16px; line-height:1; padding:0 2px}
 
-.idrow{display:grid; grid-template-columns:minmax(0,1fr); gap:16px}
+.idrow{display:grid; grid-template-columns:minmax(0,1.6fr) minmax(0,1fr); gap:16px}
+@media (max-width:640px){ .idrow{grid-template-columns:minmax(0,1fr)} }
+.banner.ok{background:var(--moss-wash); color:var(--moss); border:1px solid var(--moss)}
 .seg{display:flex; gap:6px; background:var(--surface-2); border:1px solid var(--rule); border-radius:9px; padding:4px}
 .seg button{flex:1; border:0; background:none; color:var(--ink-2); padding:7px 10px; border-radius:6px; cursor:pointer; font-size:13.5px}
 .seg button[aria-pressed=true]{background:var(--violet); color:#fff; font-weight:600}
@@ -234,6 +236,14 @@ details.aid.ex summary{color:var(--moss)}
           <div class="flabel"><span class="txt">Docente permanente</span></div>
           <select id="docente" aria-label="Docente permanente"></select>
         </div>
+        <div>
+          <div class="flabel"><span class="txt">Seu e-mail</span></div>
+          <input type="text" id="v-email" placeholder="para a coordenação responder">
+        </div>
+      </div>
+      <div id="envioBanner" class="banner ok" hidden style="margin-top:16px">
+        <span class="b-lt">Enviado</span>
+        <span id="envioTxt"></span>
       </div>
       <div class="duo" id="duo" style="margin-top:16px"></div>
     </section>
@@ -399,7 +409,8 @@ details.aid.ex summary{color:var(--moss)}
       <button class="btn" id="btnImport" type="button">Importar</button>
       <button class="btn" id="btnExport" type="button">Exportar</button>
       <button class="btn" id="btnPdf1" type="button">PDF só desta</button>
-      <button class="btn primary" id="btnPdf2" type="button">Gerar as duas fichas</button>
+      <button class="btn" id="btnPdf2" type="button">Gerar as duas fichas</button>
+      <button class="btn primary" id="btnEnviar" type="button">Enviar à coordenação</button>
     </div>
   </div>
 </div>
@@ -691,7 +702,10 @@ details.aid.ex summary{color:var(--moss)}
   sel.addEventListener('change', function(){
     save();
     state.docente = sel.value; state.n = 1;
-    load(); renderDuo(); renderSugestao();
+    load(); renderDuo(); renderSugestao(); mostraEnvio(); resetConfirm();
+  });
+  $('v-email').addEventListener('input', function(){
+    try { localStorage.setItem('ficha:email', $('v-email').value.trim()); } catch(e){}
   });
 
   var toastT;
@@ -944,6 +958,78 @@ details.aid.ex summary{color:var(--moss)}
     });
   }
 
+  /* ---------- envio à coordenação ---------- */
+  var ENDPOINT = 'https://formspree.io/f/mdajepvq';
+  var confirmando = false, confTimer = null;
+
+  function fichaTexto(d){
+    return fichaRows(d).map(function(r){ return r[0] + ' ' + r[1] + ':\n' + r[2]; }).join('\n\n');
+  }
+  function pendResumo(d){
+    var falta = [];
+    FIELDS.forEach(function(f){ var st = fieldState(f, d); if(st !== 'ok') falta.push(f.lt + (st === 'empty' ? ' vazio' : ' a resolver')); });
+    return falta.length ? falta.join('; ') : 'nenhuma';
+  }
+  function marcaEnvio(quando){
+    try { localStorage.setItem('ficha:enviado:' + state.docente, quando); } catch(e){}
+    mostraEnvio();
+  }
+  function mostraEnvio(){
+    var q = null;
+    try { q = state.docente ? localStorage.getItem('ficha:enviado:' + state.docente) : null; } catch(e){}
+    $('envioBanner').hidden = !q;
+    if(q) $('envioTxt').textContent = 'Suas duas fichas foram enviadas à coordenação em ' + q + '. Se editar algo depois disso, envie novamente.';
+  }
+  function resetConfirm(){
+    confirmando = false; clearTimeout(confTimer);
+    $('btnEnviar').textContent = 'Enviar à coordenação';
+    $('btnEnviar').classList.add('primary');
+  }
+
+  async function enviar(){
+    if(!state.docente){ toast('Escolha o seu nome antes de enviar.'); return; }
+    save();
+    var d1 = storedFicha(state.docente, 1), d2 = storedFicha(state.docente, 2);
+    d1.docente = state.docente; d1.n = 1; d2.docente = state.docente; d2.n = 2;
+    var falta = (FIELDS.length - score(d1)) + (FIELDS.length - score(d2));
+
+    if(!confirmando){
+      confirmando = true;
+      var b = $('btnEnviar');
+      b.textContent = falta ? ('Confirmar envio (' + falta + ' campos pendentes)') : 'Confirmar envio';
+      b.classList.remove('primary');
+      confTimer = setTimeout(resetConfirm, 8000);
+      toast(falta ? 'Ainda há ' + falta + ' campo(s) por resolver nas duas produções. Clique de novo para enviar assim mesmo.' : 'Clique de novo para confirmar o envio das duas fichas.');
+      return;
+    }
+    resetConfirm();
+
+    var btn = $('btnEnviar'); btn.disabled = true; btn.textContent = 'Enviando…';
+    try{
+      var fd = new FormData();
+      var mail = $('v-email').value.trim();
+      fd.append('_subject', 'Ficha de Impacto Real - ' + state.docente);
+      if(mail) fd.append('email', mail);
+      fd.append('docente', state.docente);
+      fd.append('enviado_em', new Date().toLocaleString('pt-BR'));
+      fd.append('campos_pendentes', 'Produção 1: ' + pendResumo(d1) + ' || Produção 2: ' + pendResumo(d2));
+      fd.append('producao_1', fichaTexto(d1));
+      fd.append('producao_2', fichaTexto(d2));
+      var r = await fetch(ENDPOINT, { method:'POST', body:fd, headers:{ 'Accept':'application/json' } });
+      if(r && r.ok){
+        marcaEnvio(new Date().toLocaleString('pt-BR'));
+        toast('Fichas enviadas à coordenação. Gere também o PDF e guarde uma cópia.');
+      } else {
+        toast('O envio não foi aceito. Use “Exportar” e mande o arquivo à coordenação.');
+      }
+    }catch(e){
+      toast('Sem conexão com o serviço de envio aqui. Use “Exportar” e mande o arquivo à coordenação.');
+    }finally{
+      btn.disabled = false; btn.textContent = 'Enviar à coordenação'; btn.classList.add('primary');
+    }
+  }
+  $('btnEnviar').addEventListener('click', enviar);
+
   /* ---------- abas ---------- */
   function setTab(which){
     var edit = which === 'edit';
@@ -970,6 +1056,7 @@ details.aid.ex summary{color:var(--moss)}
 
   /* ---------- estado inicial ---------- */
   (function init(){
+    try { $('v-email').value = localStorage.getItem('ficha:email') || ''; } catch(e){}
     writeForm({});
     renderDuo();
     renderSugestao();
